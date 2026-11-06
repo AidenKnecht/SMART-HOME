@@ -126,7 +126,10 @@ export const TILES: TileDef[] = [
       change:
         stats.fev1Start !== undefined && stats.fev1End !== undefined && stats.fev1ChangePct !== undefined
           ? {
-              text: `${stats.fev1ChangePct > 0 ? 'Up' : 'Down'} ${Math.abs(stats.fev1ChangePct)}% (${stats.fev1Start.toFixed(2)} to ${stats.fev1End.toFixed(2)} L)`,
+              text:
+                Math.abs(stats.fev1ChangePct) < 1
+                  ? `Steady (${stats.fev1Start.toFixed(2)} to ${stats.fev1End.toFixed(2)} L)`
+                  : `${stats.fev1ChangePct > 0 ? 'Up' : 'Down'} ${Math.abs(stats.fev1ChangePct)}% (${stats.fev1Start.toFixed(2)} to ${stats.fev1End.toFixed(2)} L)`,
               direction: Math.abs(stats.fev1ChangePct) < 5 ? 'same' : stats.fev1ChangePct < 0 ? 'worse' : 'better',
               rising: stats.fev1ChangePct > 0,
             }

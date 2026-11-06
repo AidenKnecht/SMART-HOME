@@ -20,6 +20,7 @@ export const THRESHOLDS = {
   adherenceLowPct: 60,
   adherenceDropPts: 20,
   fev1DropPct: 10,
+  fev1LowPctPredicted: 80,
   rescueRiseDaysPerWk: 2,
   yellowDaysFlag: 3,
   planExpiringDays: 30,
@@ -544,6 +545,13 @@ export function whatChanged(ctx: PatientContext, days: DaySummary[], gina: GinaR
       key: 'fev1',
       severity: 'high',
       text: `FEV1 down ${Math.abs(all.fev1ChangePct)}% (${all.fev1Start!.toFixed(2)} L to ${all.fev1End!.toFixed(2)} L)`,
+    })
+  }
+  if (all.fev1LatestPctPredicted !== undefined && all.fev1LatestPctPredicted < THRESHOLDS.fev1LowPctPredicted) {
+    flags.push({
+      key: 'fev1-low',
+      severity: 'medium',
+      text: `Latest FEV1 ${all.fev1Latest!.toFixed(2)} L is ${all.fev1LatestPctPredicted}% of predicted, below ${THRESHOLDS.fev1LowPctPredicted}%`,
     })
   }
   const ra = perWeek(sa.rescueDays, sa.daysInRange)
