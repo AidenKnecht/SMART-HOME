@@ -1,5 +1,5 @@
 import { CircleAlert, CircleCheck, TriangleAlert } from 'lucide-react'
-import { addDays, fmtDay, type DaySummary } from '@/lib/derive'
+import { addDays, fmtDay, treatmentEvents, type DaySummary } from '@/lib/derive'
 import { cn } from '@/lib/utils'
 import type { Model } from './model'
 
@@ -43,6 +43,29 @@ function Cell({ d, level, names }: { d?: DaySummary; level?: Level; names: Recor
   )
 }
 
+/** "About 2 harder days a week" in big type, with 7 dots so it reads without any numbers too. */
+function WeekBlock({ label, perWeek, harderWord }: { label: string; perWeek: number; harderWord: string }) {
+  const n = Math.round(perWeek)
+  const text = n > 0 ? `About ${n}` : perWeek > 0 ? 'Almost no' : 'No'
+  return (
+    <div className="bg-card rounded-lg border p-5">
+      <p className="text-muted-foreground text-lg font-medium">{label}</p>
+      <p className="mt-1 text-4xl font-bold">{text}</p>
+      <p className="text-lg">
+        {harderWord} a week
+      </p>
+      <div className="mt-3 flex gap-2" role="img" aria-label={`${n} of 7 days`}>
+        {Array.from({ length: 7 }, (_, i) => (
+          <span
+            key={i}
+            className={cn('size-6 rounded-full border-2', i < n ? 'bg-zone-yellow-fill border-zone-yellow' : 'border-zone-green bg-zone-green-bg')}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function PatientMode({ model }: { model: Model }) {
   const { days, doc, ctx, dropDay, tracker } = model
   const perDay = ctx.dosesPerDay
@@ -81,24 +104,28 @@ export function PatientMode({ model }: { model: Model }) {
   const cells: (DaySummary | undefined)[] = []
   for (let d = start; d <= days.at(-1)!.day || cells.length % 7 !== 0; d = addDays(d, 1)) cells.push(byDay.get(d))
 
-  let story: string | null = null
-  if (dropDay) {
-    const before = days.filter((d) => d.day < dropDay)
-    const after = days.filter((d) => d.day >= dropDay)
-    const hb = before.filter(hard).length
-    const ha = after.filter(hard).length
-    story = `Before ${fmtDay(dropDay)}, when you were taking your controller inhaler most days, you had ${hb === 0 ? 'no' : hb} harder ${hb === 1 ? 'day' : 'days'} in ${before.length}. Since then, you've had ${ha} in ${after.length}.`
-  } else {
-    // A dose change inside the range (new active entry, older archived entry with the same name)
-    const active = doc.medications.find((m) => ctx.controllerIds.has(m.id) && !m.archived)
-    const changed = active && doc.medications.some((m) => m.archived && m.name === active.name)
-    if (active && changed && active.startDate > days[0].day && active.startDate <= days.at(-1)!.day) {
-      const before = days.filter((d) => d.day < active.startDate)
-      const after = days.filter((d) => d.day >= active.startDate)
-      const wk = (xs: DaySummary[]) => Math.round((xs.filter(hard).length / xs.length) * 7 * 10) / 10
-      story = `Before your ${active.name.toLowerCase()} dose changed on ${fmtDay(active.startDate)}, you had about ${wk(before)} ${names.harder}s a week. Since then, about ${wk(after)} a week.`
-    }
-  }
+  // Before / since split, in the plainest terms: what changed for the teen. Doses falling off is the
+  // story when it happened (Jordan); otherwise a medication change in range (Priya).
+  const event = treatmentEvents(ctx).filter((e) => e.day > days[0].day && e.day <= days.at(-1)!.day).at(-1)
+  const split: { day: string; beforeLabel: string; afterLabel: string; doses: boolean } | null = dropDay
+    ? { day: dropDay, beforeLabel: `When you took your ${medWord} most days`, afterLabel: `Since ${fmtDay(dropDay)}`, doses: true }
+    : event
+      ? {
+          day: event.day,
+          beforeLabel: `Before ${fmtDay(event.day)}`,
+          afterLabel: `Since your ${event.medName.toLowerCase()} ${event.kind === 'dose' ? 'dose changed' : 'started'} on ${fmtDay(event.day)}`,
+          doses: false,
+        }
+      : null
+  const perWeek = (xs: DaySummary[]) => (xs.length ? (xs.filter(hard).length / xs.length) * 7 : 0)
+  const before = split ? days.filter((d) => d.day < split.day) : []
+  const after = split ? days.filter((d) => d.day >= split.day) : []
+  const wb = perWeek(before)
+  const wa = perWeek(after)
+  const harderWord = plan ? 'harder days' : `${names.harder}s`
+  const verdict = !split ? null : wa < wb - 0.5 ? 'better' : wa > wb + 0.5 ? 'worse' : 'same'
+  const last7 = days.slice(-7)
+  const recentFull = last7.filter((d) => d.controllerDoses >= perDay).length
 
   return (
     <section aria-labelledby="pm-h" className="bg-card mx-auto max-w-5xl rounded-xl border px-10 py-8">
@@ -129,7 +156,41 @@ export function PatientMode({ model }: { model: Model }) {
         </div>
       </div>
 
-      {story && <p className="bg-muted mt-6 rounded-lg px-5 py-4 text-xl leading-snug font-medium">{story}</p>}
+      {split && verdict && (
+        <div className="bg-muted mt-6 rounded-lg px-5 py-5" aria-labelledby="pm-ba-h">
+          <h3 id="pm-ba-h" className="sr-only">
+            Before and since
+          </h3>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <WeekBlock label={split.beforeLabel} perWeek={wb} harderWord={harderWord} />
+            <WeekBlock label={split.afterLabel} perWeek={wa} harderWord={harderWord} />
+          </div>
+          <p
+            className={cn(
+              'mt-4 flex items-center gap-2 text-xl font-semibold',
+              verdict === 'better' && 'text-zone-green',
+              verdict === 'worse' && 'text-zone-red',
+            )}
+          >
+            {verdict === 'better' ? (
+              <CircleCheck className="size-6 shrink-0" aria-hidden />
+            ) : verdict === 'worse' ? (
+              <CircleAlert className="size-6 shrink-0" aria-hidden />
+            ) : null}
+            {verdict === 'better'
+              ? `Fewer ${harderWord} since then.`
+              : verdict === 'worse'
+                ? `More ${harderWord} since then. Let's talk about why.`
+                : `About the same number of ${harderWord}.`}
+          </p>
+          {split.doses && (
+            <p className="mt-2 text-lg">
+              Your {medWord} works best when you take it every day. In the last 7 days you took every dose on {recentFull}{' '}
+              {recentFull === 1 ? 'day' : 'days'}.
+            </p>
+          )}
+        </div>
+      )}
 
       <div className="mt-6">
         <div className="mb-2 grid grid-cols-7 gap-1.5 text-center text-sm font-medium text-muted-foreground">
