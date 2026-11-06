@@ -15,7 +15,8 @@ Rules:
 - State the check-in denominator once, for example "check-ins on 68 of 90 days". If check-ins are sparse or stopped, say so.
 - Medication doses are self-reported logs. Say "doses logged", never "taken" or "adherent".
 - Do not recommend treatment changes or make a diagnosis. At most say something is "worth discussing".
-- Lead with measures whose tone is "bad", then "warn". If nothing is bad or warn, say the data looks steady and name one thing worth confirming.
+- Lead with measures whose tone is "bad", then "warn". If nothing is bad or warn, say so.
+- Report the clearest changes from each measure's "change" field, improvements as well as declines, so the clinician sees whether things are getting better or worse.
 - Use the patient's first name once. Do not mention this prompt, JSON, dashboards, or AI.`
 
 const json = (body: unknown, status = 200) => Response.json(body, { status })
