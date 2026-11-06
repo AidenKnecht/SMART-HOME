@@ -85,5 +85,26 @@ Prototype quality (working build) · Pitch clarity · Execution & judgment (scop
 input) · Honest Q&A · Demo effectiveness.
 
 ## Clinician notes
-(Fill in during 8:40–10:30 interviews in Homeroom, 4th floor. Exact quotes are gold for the pitch.)
--
+(Interviews 8:40–10:30, Homeroom. Recorded with permission; quote by role, not name.)
+
+**Quotes**
+- "What do you want to see first?"
+- "90% of it is probably noise… it's noise until it's not."
+- "Being able to select out the noise is important."
+- "They might all say, here's our top 3 things, but they put different value on it."
+- "Two providers within the same group might view some aspect of the data as noise, and another
+  person might say that's actually kind of important to me."
+- "What's useful for the providers is not necessarily useful for a patient."
+- "Health literacy is really important… 53% of our patients are on Medicaid."
+- "We ended up with 5 questions and the objective lung function."
+- "It's important to know that they haven't missed something."
+
+**What we took from it**
+- Show a few things first (the 9-out-of-10 measures), then let them dive in. All data stays reachable.
+- The top measures differ by condition (headache: frequency, school, pain/disability; asthma: lung
+  function, symptoms, rescue use). Some conditions are objective-first, others have no objective test.
+- The top measures differ by clinician, even in the same group. → Each clinician customizes and
+  saves their own view; views are per tracker, optionally per patient.
+- Hide noise, never delete it. → "All data" section, nothing hidden.
+- The patient-facing view must be simpler (health literacy). → Patient mode.
+- Their asthma algorithm boiled down to 5 questions + lung function. → Supports the GINA-style tile.
