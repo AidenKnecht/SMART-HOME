@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import {
   Area,
   AreaChart,
@@ -107,7 +107,9 @@ function DayRow({
   )
 }
 
-export function TrendPanels({ model }: { model: Model }) {
+export type Panel = 'lung' | 'meds' | 'checkins'
+
+export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { model: Model; panels?: Panel[] }) {
   const { days, ctx, doc, dropDay } = model
   const [hover, setHover] = useState<number | null>(null)
   const roll = rollingAdherence(days, ctx)
@@ -152,12 +154,8 @@ export function TrendPanels({ model }: { model: Model }) {
   const syncProps = { syncId: 'days', syncMethod: 'value' as const }
   const labelEvery = n > 45 ? 14 : n > 20 ? 7 : 2
 
-  return (
-    <section aria-labelledby="trend-h" className="bg-card rounded-lg border pb-3">
-      <h2 id="trend-h" className="sr-only">
-        Trends
-      </h2>
-
+  const lung = (
+    <>
       <PanelTitle title="Lung function" note={`FEV1, best accepted blow per day (L). Dashed line: 80% of predicted ${predicted.toFixed(2)} L`} />
       <div className="h-40">
         <ResponsiveContainer width="100%" height="100%">
@@ -194,6 +192,10 @@ export function TrendPanels({ model }: { model: Model }) {
         </ResponsiveContainer>
       </div>
 
+    </>
+  )
+  const med = (
+    <>
       <PanelTitle title="Controller medication" note="Doses logged as taken, 7-day rolling % of scheduled. Self-reported." />
       <div className="h-28">
         <ResponsiveContainer width="100%" height="100%">
@@ -227,6 +229,17 @@ export function TrendPanels({ model }: { model: Model }) {
         </ResponsiveContainer>
       </div>
 
+    </>
+  )
+  const order = panels.filter((p) => p !== "checkins")
+
+  return (
+    <section aria-labelledby="trend-h" className="bg-card rounded-lg border pb-3">
+      <h2 id="trend-h" className="sr-only">
+        Trends
+      </h2>
+
+      {order.map((p) => (p === "lung" ? <Fragment key={p}>{lung}</Fragment> : <Fragment key={p}>{med}</Fragment>))}
       <PanelTitle title="Daily check-ins" note="Filled dot: yes. Small dash: no check-in that day." />
       <div className="mt-1 space-y-1">
         {(
