@@ -2,6 +2,11 @@
 
 Timekeeper shows a card at 1:15 left. Rehearse twice with a timer. One person talks, one drives.
 
+**Live demo:** https://smart-home-kit.vercel.app (patient Jordan Whitfield is the default story).
+For 0:00–0:25, use the **Portal today** toggle instead of a screenshot: same patient, raw grid,
+"Last day logged Nov 2". Flip to **Clinician view** for the payoff. Patient mode is **Show patient**.
+Sam Delgado is the "taking it but not working" case if Q&A asks.
+
 | Time | Beat | On screen |
 |---|---|---|
 | 0:00–0:25 | **Problem.** "Dr. ___ sees 20 patients today and has 60 seconds before this teen walks in. Here's what SMART@Home shows her now." | The current grid screenshot from the brief |
