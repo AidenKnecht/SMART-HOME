@@ -8,3 +8,10 @@ dist/
 *.log
 .DS_Store
 .claude/settings.local.json
+
+# Vite
+dist-ssr
+*.local
+.vscode/*
+!.vscode/extensions.json
+.idea
