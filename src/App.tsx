@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { SlidersHorizontal } from 'lucide-react'
+import { ChevronRight, SlidersHorizontal } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -201,7 +201,18 @@ export default function App() {
                 <TrendPanels model={model} panels={view.panels} />
                 <ChangeFlags flags={model.flags} />
               </div>
-              {view.columns.length > 0 && <DailyTimeline model={model} dayRule={dayRule} columns={view.columns} />}
+              {view.columns.length > 0 && (
+                <details id="day-by-day" className="group/day">
+                  <summary className="bg-card flex cursor-pointer list-none items-baseline gap-2 rounded-lg border px-4 py-2.5 group-open/day:rounded-b-none group-open/day:border-b-0">
+                    <ChevronRight className="size-4 self-center transition-transform group-open/day:rotate-90" aria-hidden />
+                    <span className="text-sm font-semibold">Day by day</span>
+                    <span className="text-muted-foreground text-xs">
+                      One row per day, {model.days.length} days. Open to see every day&rsquo;s answers, doses and spirometry.
+                    </span>
+                  </summary>
+                  <DailyTimeline model={model} dayRule={dayRule} columns={view.columns} />
+                </details>
+              )}
               <AllData model={model} />
             </>
           ) : screen === 'patient' ? (

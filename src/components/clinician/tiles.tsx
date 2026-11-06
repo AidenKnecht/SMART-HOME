@@ -1,10 +1,9 @@
 import type { ReactNode } from 'react'
 import { Check, X } from 'lucide-react'
 import type { Question } from '@/data/types'
-import { fmtDay, perWeek, questionStats, type RangeStats } from '@/lib/derive'
+import { fmtDay, perWeek, questionStats, rollingAdherence, type DaySummary, type RangeStats } from '@/lib/derive'
 import type { Model } from './model'
-import { zoneFill } from './Zone'
-import { cn } from '@/lib/utils'
+import { DayDots, Sparkline, ZoneDots, type DotState } from './Sparkline'
 
 export type Tone = 'good' | 'warn' | 'bad' | 'neutral'
 export interface Change {
@@ -18,6 +17,8 @@ export interface TileView {
   tone: Tone
   change?: Change
   note: string
+  /** Small glanceable visual for the widget (sparkline, day dots) */
+  viz?: ReactNode
   detail?: ReactNode
 }
 export type MeasureGroup = 'Summary' | 'Lung function' | 'Action plan' | 'Check-in questions'
@@ -55,6 +56,13 @@ const isAsthma = (m: Model) => m.tracker.condition === 'Asthma'
 const rescueName = (m: Model) =>
   m.doc.medications.find((x) => m.ctx.rescueIds.has(x.id) && !x.archived)?.name.replace(/ HFA$/, '') ?? 'rescue'
 
+/** Day dots: on when the day says yes; "none" when there was no check-in (unless a dose says yes). */
+const dots = (m: Model, yes: (d: DaySummary) => boolean) => (
+  <DayDots
+    states={m.days.map((d): DotState => (yes(d) ? 'on' : d.status !== 'logged' ? 'none' : 'off'))}
+  />
+)
+
 /** Measures computed from several signals at once. */
 export const BUILT_IN: TileDef[] = [
   {
@@ -71,7 +79,7 @@ export const BUILT_IN: TileDef[] = [
       tone: gina.level === 'well' ? 'good' : gina.level === 'partly' ? 'warn' : 'bad',
       note: `GINA-style, from home data, last 4 weeks. Based on ${gina.basedOnDays} of ${gina.windowDays} days with a check-in.`,
       detail: (
-        <ul className="mt-2 space-y-0.5 text-xs">
+        <ul className="mt-2 grid gap-x-4 gap-y-0.5 text-xs sm:grid-cols-2">
           {gina.criteria.map((c) => (
             <li key={c.key} className="flex items-start gap-1.5">
               {c.met ? (
@@ -105,6 +113,7 @@ export const BUILT_IN: TileDef[] = [
         unit: p === undefined ? undefined : '%',
         tone: p === undefined ? 'neutral' : p >= 80 ? 'good' : p >= 60 ? 'warn' : 'bad',
         change: compare(first.adherencePct, second.adherencePct, false, 5, (x) => `${x}%`),
+        viz: <Sparkline values={rollingAdherence(m.days, m.ctx)} reference={80} min={0} max={100} />,
         note: `${stats.controllerDoses} of ${stats.scheduledDoses} scheduled ${isAsthma(m) ? '' : 'daily-medication '}doses. Self-reported as taken, not verified.`,
       }
     },
@@ -115,13 +124,17 @@ export const BUILT_IN: TileDef[] = [
     group: 'Summary',
     hint: 'Days with any symptom ticked',
     available: (m) => hasQ(m, 'symptoms'),
-    view: ({ stats, first, second }) => ({
+    view: (m) => {
+      const { stats, first, second } = m
+      return {
       value: `${stats.symptomDays}`,
       unit: 'days',
       tone: wk(stats, stats.symptomDays) > 2 ? 'bad' : stats.symptomDays > 0 ? 'neutral' : 'good',
       change: compare(wk(first, first.symptomDays), wk(second, second.symptomDays), true, 0.5, (x) => `${x}/wk`),
+      viz: dots(m, (d) => d.symptoms.length > 0),
       note: loggedNote(stats),
-    }),
+      }
+    },
   },
   {
     key: 'rescue',
@@ -136,6 +149,7 @@ export const BUILT_IN: TileDef[] = [
         unit: 'days',
         tone: wk(stats, stats.rescueDays) > 2 ? 'bad' : 'neutral',
         change: compare(wk(first, first.rescueDays), wk(second, second.rescueDays), true, 0.5, (x) => `${x}/wk`),
+        viz: dots(m, (d) => d.rescueAny),
         note: `From check-in answers and logged ${rescueName(m).toLowerCase()} doses (${stats.rescueDosesTotal} doses).`,
       }
     },
@@ -146,7 +160,13 @@ export const BUILT_IN: TileDef[] = [
     group: 'Lung function',
     hint: 'Home spirometry, best accepted blow, % of predicted and trend',
     available: (m) => m.doc.medicalDevices.length > 0 && !!m.doc.asthmaTreatmentPlan,
-    view: ({ stats, doc }) => ({
+    view: ({ stats, doc, days }) => ({
+      viz: (
+        <Sparkline
+          values={days.map((d) => d.spirometry?.fev1)}
+          reference={doc.asthmaTreatmentPlan ? doc.asthmaTreatmentPlan.predictedFev1 * 0.8 : undefined}
+        />
+      ),
       value: stats.fev1Latest !== undefined ? stats.fev1Latest.toFixed(2) : 'No data',
       unit: stats.fev1Latest !== undefined ? 'L' : undefined,
       tone:
@@ -177,22 +197,15 @@ export const BUILT_IN: TileDef[] = [
     group: 'Action plan',
     hint: 'Green, yellow and red days from the app’s action plan',
     available: (m) => !!m.doc.asthmaTreatmentPlan,
-    view: ({ stats, first, second }) => {
+    view: ({ stats, first, second, days }) => {
       const z = stats.zones
-      const total = stats.zoneDays || 1
       return {
         value: `${z.yellow + z.red}`,
         unit: 'yellow or red',
         tone: z.red > 0 ? 'bad' : z.yellow > 0 ? 'warn' : 'good',
         change: compare(first.zones.yellow + first.zones.red, second.zones.yellow + second.zones.red, true, 1, (x) => `${x}`),
         note: `${z.green} green, ${z.yellow} yellow, ${z.red} red, of ${stats.zoneDays} days with a zone.`,
-        detail: (
-          <div className="bg-muted mt-2 flex h-2 w-full overflow-hidden rounded-sm" aria-hidden>
-            {(['green', 'yellow', 'red'] as const).map((k) => (
-              <div key={k} className={cn(zoneFill[k])} style={{ width: `${(100 * z[k]) / total}%` }} />
-            ))}
-          </div>
-        ),
+        viz: <ZoneDots zones={days.map((d) => d.zone)} />,
       }
     },
   },
@@ -202,13 +215,17 @@ export const BUILT_IN: TileDef[] = [
     group: 'Summary',
     hint: 'Days the teen reported missing school',
     available: (m) => hasQ(m, 'missedSchool'),
-    view: ({ stats, first, second }) => ({
+    view: (m) => {
+      const { stats, first, second } = m
+      return {
       value: `${stats.schoolDays}`,
       unit: 'days',
       tone: stats.schoolDays > 0 ? 'warn' : 'good',
       change: compare(first.schoolDays, second.schoolDays, true, 0, (x) => `${x}`),
+      viz: dots(m, (d) => !!d.missedSchool),
       note: `Reported on check-ins; ${stats.loggedDays} of ${stats.daysInRange} days had one.`,
-    }),
+      }
+    },
   },
 ]
 
@@ -236,6 +253,7 @@ export function questionTile(q: Question): TileDef {
             unit: 'days',
             tone: 'neutral',
             change: compare(a.yesDays, b.yesDays, true, 0, (x) => rangeLabel(x)),
+            viz: dots(m, (d) => d.answers[q.key] === true),
             note: `Answered “yes” on ${rangeLabel(s.yesDays ?? 0)} of ${s.answeredDays} answered.`,
           }
         },
@@ -253,6 +271,13 @@ export function questionTile(q: Question): TileDef {
             unit: s.mean !== undefined ? `${unit ?? ''} average`.trim() : undefined,
             tone: 'neutral',
             change: compare(a.mean, b.mean, true, q.type === 'scale1to10' ? 0.5 : 0.3, (x) => `${x}`),
+            viz: (
+              <Sparkline
+                values={m.days.map((d) => (d.answers[q.key] === undefined ? undefined : Number(d.answers[q.key])))}
+                min={q.type === 'scale1to10' ? 0 : undefined}
+                max={q.type === 'scale1to10' ? 10 : undefined}
+              />
+            ),
             note: s.answeredDays ? `On ${rangeLabel(s.answeredDays)} answered. Highest ${s.max}${unit && unit !== 'of 10' ? ` ${unit}` : ''}.` : 'Not answered in this range.',
           }
         },
@@ -268,6 +293,10 @@ export function questionTile(q: Question): TileDef {
             unit: 'days',
             tone: 'neutral',
             note: `Days with at least one ticked, of ${s.answeredDays} answered.`,
+            viz: dots(m, (d) => {
+              const v = d.answers[q.key]
+              return Array.isArray(v) && v.some((x) => !(q.noneValue && String(x).trim() === q.noneValue.trim()))
+            }),
             detail: s.topItems?.length ? (
               <div className="mt-2 flex flex-wrap gap-1">
                 {s.topItems.slice(0, 4).map((t) => (
