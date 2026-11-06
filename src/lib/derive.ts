@@ -599,6 +599,48 @@ export function adherenceDropDay(days: DaySummary[], ctx: PatientContext): strin
   return undefined
 }
 
+// ---------------------------------------------------------------- Treatment changes
+
+export interface TreatmentEvent {
+  day: string
+  kind: 'dose' | 'switch' | 'start'
+  /** e.g. "Topiramate 25 mg to 50 mg" */
+  label: string
+  medName: string
+}
+
+/**
+ * Medication starts and changes inside the data span. A new entry with an archived entry of the same
+ * name is a dose change; a new daily medication replacing an archived daily one of another name is a
+ * switch; anything else is a start. Only changes after the first data day count, so there is a "before".
+ */
+export function treatmentEvents(ctx: PatientContext): TreatmentEvent[] {
+  const meds = ctx.doc.medications
+  const out: TreatmentEvent[] = []
+  for (const m of meds) {
+    if (m.archived || m.startDate <= ctx.firstDay || m.startDate > ctx.asOf) continue
+    const same = meds.filter((x) => x.archived && x.name === m.name && x.startDate < m.startDate).sort((a, b) => b.startDate.localeCompare(a.startDate))[0]
+    const replaced = isControllerMed(m)
+      ? meds.find((x) => x.archived && x.name !== m.name && isControllerMed(x) && x.startDate < m.startDate)
+      : undefined
+    if (same)
+      out.push({ day: m.startDate, kind: 'dose', label: `${m.name} ${same.dosage.strength} to ${m.dosage.strength}`, medName: m.name })
+    else if (replaced)
+      out.push({ day: m.startDate, kind: 'switch', label: `${replaced.name} to ${m.name} ${m.dosage.strength}`, medName: m.name })
+    else out.push({ day: m.startDate, kind: 'start', label: `Started ${m.name} ${m.dosage.strength}`, medName: m.name })
+  }
+  return out.sort((a, b) => a.day.localeCompare(b.day))
+}
+
+/** Days around an event, clipped to the data. Index `eventIndex` is the change day (counted as "after"). */
+export function daysAround(ctx: PatientContext, day: string, before: number, after: number, dayRule: DayRule) {
+  const from = addDays(day, -before) < ctx.firstDay ? ctx.firstDay : addDays(day, -before)
+  const to = addDays(day, after) > ctx.asOf ? ctx.asOf : addDays(day, after)
+  const days = buildDays(ctx, from, to, dayRule)
+  const eventIndex = days.findIndex((d) => d.day === day)
+  return { days, eventIndex, beforeCount: eventIndex, afterCount: days.length - eventIndex }
+}
+
 // ---------------------------------------------------------------- What changed
 
 export type FlagSeverity = 'high' | 'medium' | 'info'

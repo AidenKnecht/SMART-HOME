@@ -16,6 +16,7 @@ import { PortalGrid } from '@/components/clinician/PortalGrid'
 import { PreVisitSummary } from '@/components/clinician/PreVisitSummary'
 import { SummaryStrip } from '@/components/clinician/SummaryStrip'
 import { measuresFor } from '@/components/clinician/tiles'
+import { TreatmentEffect } from '@/components/clinician/TreatmentEffect'
 import { TrendPanels } from '@/components/clinician/TrendPanels'
 import {
   deleteUserView,
@@ -239,6 +240,7 @@ export default function App() {
                   onOpen={setDetailKey}
                 />
               </div>
+              <TreatmentEffect key={doc.id} model={model} dayRule={dayRule} order={view.measures} />
               {view.columns.length > 0 && (
                 <details id="day-by-day" className="group/day print:hidden">
                   <summary className="bg-card flex cursor-pointer list-none items-baseline gap-2 rounded-lg border px-4 py-2.5 group-open/day:rounded-b-none group-open/day:border-b-0">
