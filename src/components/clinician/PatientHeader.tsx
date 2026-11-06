@@ -9,7 +9,7 @@ import type { PatientDocument } from '@/data/types'
 import { fmtDay, type DayRule } from '@/lib/derive'
 import type { Model, RangeKey } from './model'
 
-export type ViewKey = 'clinician' | 'portal'
+export type ViewKey = 'clinician' | 'patient' | 'portal'
 
 interface Props {
   patients: PatientDocument[]
@@ -118,6 +118,7 @@ export function PatientHeader(p: Props) {
             aria-label="View"
           >
             <ToggleGroupItem value="clinician" className="px-3">Clinician view</ToggleGroupItem>
+            <ToggleGroupItem value="patient" className="px-3">Show patient</ToggleGroupItem>
             <ToggleGroupItem value="portal" className="px-3">Portal today</ToggleGroupItem>
           </ToggleGroup>
         </div>

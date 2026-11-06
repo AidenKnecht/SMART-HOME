@@ -10,6 +10,7 @@ import { tilesFor } from '@/components/clinician/tiles'
 import { TrendPanels } from '@/components/clinician/TrendPanels'
 import { DailyTimeline } from '@/components/clinician/DailyTimeline'
 import { PortalGrid } from '@/components/clinician/PortalGrid'
+import { PatientMode } from '@/components/clinician/PatientMode'
 import { demoPatient, patients } from '@/data'
 import { daysToCsv, type DayRule } from '@/lib/derive'
 
@@ -75,6 +76,8 @@ export default function App() {
             </div>
             <DailyTimeline model={model} dayRule={dayRule} />
           </>
+        ) : view === 'patient' ? (
+          <PatientMode model={model} />
         ) : (
           <PortalGrid doc={doc} />
         )}
