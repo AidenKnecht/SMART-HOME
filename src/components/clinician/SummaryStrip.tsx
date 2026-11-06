@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 import type { Model } from './model'
 import type { Change, TileDef, Tone } from './tiles'
 
-const toneIcon: Record<Tone, { Icon: typeof CircleCheck; cls: string; label: string } | null> = {
+export const toneIcon: Record<Tone, { Icon: typeof CircleCheck; cls: string; label: string } | null> = {
   good: { Icon: CircleCheck, cls: 'text-zone-green', label: 'On target' },
   warn: { Icon: TriangleAlert, cls: 'text-zone-yellow', label: 'Watch' },
   bad: { Icon: CircleAlert, cls: 'text-zone-red', label: 'Needs attention' },

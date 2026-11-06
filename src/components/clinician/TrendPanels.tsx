@@ -110,7 +110,16 @@ function DayRow({
   )
 }
 
-export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { model: Model; panels?: Panel[] }) {
+export function TrendPanels({
+  model,
+  panels = ['lung', 'meds', 'checkins'],
+  tall = false,
+}: {
+  model: Model
+  panels?: Panel[]
+  /** Bigger charts, for the detail panel */
+  tall?: boolean
+}) {
   const { days, ctx, doc, dropDay } = model
   const [hover, setHover] = useState<number | null>(null)
   const roll = rollingAdherence(days, ctx)
@@ -179,7 +188,7 @@ export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { 
   const lung = (
     <>
       <PanelTitle title="Lung function" note={`FEV1, best accepted blow per day (L). Dashed line: 80% of predicted ${predicted.toFixed(2)} L`} />
-      <div className="h-40">
+      <div className={tall ? 'h-64' : 'h-40'}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={margin} {...syncProps}>
             <CartesianGrid stroke={GRID} vertical={false} />
@@ -222,7 +231,7 @@ export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { 
         title={`${plan ? 'Controller' : 'Daily'} medication${activeMed ? `: ${activeMed.name}` : ''}`}
         note="Doses logged as taken, 7-day rolling % of scheduled. Self-reported."
       />
-      <div className="h-28">
+      <div className={tall ? 'h-52' : 'h-28'}>
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={margin} {...syncProps}>
             <CartesianGrid stroke={GRID} vertical={false} />

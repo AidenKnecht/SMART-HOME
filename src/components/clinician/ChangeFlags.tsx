@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CircleAlert, Info, TriangleAlert } from 'lucide-react'
+import { ChevronRight, CircleAlert, Info, TriangleAlert } from 'lucide-react'
 import type { Flag, FlagSeverity } from '@/lib/derive'
 import { cn } from '@/lib/utils'
 
@@ -11,7 +11,7 @@ const sev: Record<FlagSeverity, { Icon: typeof Info; cls: string; label: string 
 
 const FIRST = 6
 
-export function ChangeFlags({ flags }: { flags: Flag[] }) {
+export function ChangeFlags({ flags, onOpen }: { flags: Flag[]; onOpen?: (measure: string) => void }) {
   const [all, setAll] = useState(false)
   const shown = all ? flags : flags.slice(0, FIRST)
   return (
@@ -25,10 +25,26 @@ export function ChangeFlags({ flags }: { flags: Flag[] }) {
         <ul className="divide-y">
           {shown.map((f) => {
             const s = sev[f.severity]
-            return (
-              <li key={f.key} className="flex items-start gap-2 px-4 py-2 text-sm leading-snug">
+            const body = (
+              <>
                 <s.Icon className={cn('mt-0.5 size-4 shrink-0', s.cls)} aria-label={s.label} />
-                <span>{f.text}</span>
+                <span className="flex-1">{f.text}</span>
+              </>
+            )
+            return (
+              <li key={f.key}>
+                {f.measure && onOpen ? (
+                  <button
+                    type="button"
+                    onClick={() => onOpen(f.measure!)}
+                    className="hover:bg-accent/60 focus-visible:bg-accent/60 flex w-full items-start gap-2 px-4 py-2 text-left text-sm leading-snug outline-none"
+                  >
+                    {body}
+                    <ChevronRight className="text-muted-foreground mt-0.5 size-4 shrink-0" aria-label="Open details" />
+                  </button>
+                ) : (
+                  <div className="flex items-start gap-2 px-4 py-2 text-sm leading-snug">{body}</div>
+                )}
               </li>
             )
           })}

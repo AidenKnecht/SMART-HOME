@@ -8,6 +8,7 @@ import { AllData } from '@/components/clinician/AllData'
 import { ChangeFlags } from '@/components/clinician/ChangeFlags'
 import { CustomizeView } from '@/components/clinician/CustomizeView'
 import { columnsFor, DailyTimeline } from '@/components/clinician/DailyTimeline'
+import { MeasureDetail } from '@/components/clinician/MeasureDetail'
 import { buildModel, type RangeKey } from '@/components/clinician/model'
 import { PatientHeader, type ViewKey } from '@/components/clinician/PatientHeader'
 import { PatientMode } from '@/components/clinician/PatientMode'
@@ -44,6 +45,8 @@ export default function App() {
   const [pickedId, setPickedId] = useState<string | null>(null)
   const [draft, setDraft] = useState<ViewConfig | null>(null)
   const [customizing, setCustomizing] = useState(false)
+  /** Measure open in the detail panel */
+  const [detailKey, setDetailKey] = useState<string | null>(null)
 
   const doc = patients.find((p) => p.id === patientId) ?? demoPatient
   const me = clinicians.find((c) => c.id === clinicianId) ?? clinicians[0]
@@ -71,6 +74,7 @@ export default function App() {
   }
   const choosePatient = (id: string) => {
     setPatientId(id)
+    setDetailKey(null)
     setPickedId(null)
     leaveDraft()
   }
@@ -117,6 +121,16 @@ export default function App() {
     a.click()
     URL.revokeObjectURL(a.href)
   }
+
+  const openAllData = () => {
+    setDetailKey(null)
+    const el = document.getElementById('all-data') as HTMLDetailsElement | null
+    if (!el) return
+    el.open = true
+    // Let the sheet close before scrolling
+    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 350)
+  }
+  const detailTile = detailKey ? allMeasures.find((t) => t.key === detailKey) : undefined
 
   const viewLabel = (v: ViewConfig) => (v.patientId ? `${v.name} (${doc.firstName} only)` : v.name)
   const showPanel = customizing && screen === 'clinician' && !!draft
@@ -196,10 +210,15 @@ export default function App() {
                   {base.ownerId === 'preset' ? base.description : `Saved by ${me.name}.`}
                 </span>
               </div>
-              {tiles.length > 0 && <SummaryStrip model={model} tiles={tiles} />}
+              {tiles.length > 0 && <SummaryStrip model={model} tiles={tiles} onOpen={setDetailKey} />}
               <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
                 <TrendPanels model={model} panels={view.panels} />
-                <ChangeFlags flags={model.flags} />
+                <ChangeFlags
+                  flags={model.flags.map((f) =>
+                    f.measure && allMeasures.some((t) => t.key === f.measure) ? f : { ...f, measure: undefined },
+                  )}
+                  onOpen={setDetailKey}
+                />
               </div>
               {view.columns.length > 0 && (
                 <details id="day-by-day" className="group/day">
@@ -214,6 +233,13 @@ export default function App() {
                 </details>
               )}
               <AllData model={model} />
+              <MeasureDetail
+                model={model}
+                tile={detailTile}
+                dayRule={dayRule}
+                onClose={() => setDetailKey(null)}
+                onAllData={openAllData}
+              />
             </>
           ) : screen === 'patient' ? (
             <PatientMode model={model} />

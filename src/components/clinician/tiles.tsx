@@ -129,7 +129,8 @@ export const BUILT_IN: TileDef[] = [
       return {
       value: `${stats.symptomDays}`,
       unit: 'days',
-      tone: wk(stats, stats.symptomDays) > 2 ? 'bad' : stats.symptomDays > 0 ? 'neutral' : 'good',
+      // The >2 days/week threshold is GINA's, so it only colors asthma
+      tone: !isAsthma(m) ? 'neutral' : wk(stats, stats.symptomDays) > 2 ? 'bad' : stats.symptomDays > 0 ? 'neutral' : 'good',
       change: compare(wk(first, first.symptomDays), wk(second, second.symptomDays), true, 0.5, (x) => `${x}/wk`),
       viz: dots(m, (d) => d.symptoms.length > 0),
       note: loggedNote(stats),

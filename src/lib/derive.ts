@@ -606,6 +606,21 @@ export interface Flag {
   key: string
   severity: FlagSeverity
   text: string
+  /** Measure key the flag is about, so it can open that measure's detail */
+  measure?: string
+}
+
+const FLAG_MEASURE: Record<string, string> = {
+  adherence: 'adherence',
+  'not-working': 'control',
+  fev1: 'fev1',
+  'fev1-low': 'fev1',
+  rescue: 'rescue',
+  red: 'zones',
+  yellow: 'zones',
+  night: 'q:nightWaking',
+  school: 'school',
+  conflict: 'symptoms',
 }
 
 export function whatChanged(ctx: PatientContext, days: DaySummary[], gina: GinaResult | null): Flag[] {
@@ -727,7 +742,9 @@ export function whatChanged(ctx: PatientContext, days: DaySummary[], gina: GinaR
     })
   }
   const order: Record<FlagSeverity, number> = { high: 0, medium: 1, info: 2 }
-  return flags.sort((x, y) => order[x.severity] - order[y.severity])
+  return flags
+    .map((f) => ({ ...f, measure: f.key.startsWith('q:') ? f.key : FLAG_MEASURE[f.key] }))
+    .sort((x, y) => order[x.severity] - order[y.severity])
 }
 
 // ---------------------------------------------------------------- Raw portal grid (the "before")
