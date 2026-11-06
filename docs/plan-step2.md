@@ -1,5 +1,8 @@
 # Revised Step 2 plan: derivation layer + core clinician view
 
+> **Done** (commits 6d4371a through 2cc9282, Nov 6). Kept for history. For current state and next
+> steps read `docs/HANDOFF.md`.
+
 ## Context
 `docs/plan-step2.md` (commit c7cfb01) is a good plan: a pure derivation layer, settings instead of
 hard-coded clinical decisions, GINA-style control, honest "doses logged" wording, and the
