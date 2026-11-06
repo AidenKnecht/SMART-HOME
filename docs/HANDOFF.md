@@ -83,8 +83,10 @@ other built widgets/detail panel). Always `git pull` first and check `git log` b
    `fallbackSummary` when the call fails (local dev always shows it), prefetch of all four patients
    for Dr. Okafor on load. UI: `PreVisitSummary.tsx` above the widget grid. Tested live: 405 on GET,
    413 over 40 KB, ~3 s per call, drafts checked for all four patients.
-2. **Polish pass** with the `impeccable` skill: widget wrapping at 1280 px, the Customize aside on
-   smaller screens, keyboard focus in the ordered picker, detail-sheet scroll, print of the widget grid.
+2. **Polish pass: DONE (12:15).** 1280 px checked, no breakage. Customize aside hides while a detail
+   sheet is open. Day-by-day inside the sheet no longer has its own scroll box (the blow table keeps
+   its 480 px cap on purpose). Add-measure chips have a focus ring; Enter adds. Print = landscape,
+   controls hidden, colors kept, cards unbroken. No AI calls under `vite dev`, so local console is clean.
 3. **Pitch support**: regenerate screenshots (`.playwright-mcp/` is gitignored), final Q&A list in
    `docs/demo-outline.md`. Tommy owns the outline; read it before editing, other sessions edit it too.
 4. Optional: drag-and-drop in Customize (`@dnd-kit`); "Save as team preset" (needs a shared store).
