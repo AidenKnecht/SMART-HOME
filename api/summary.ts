@@ -11,7 +11,7 @@ const INSTRUCTIONS = `You write a pre-visit summary for a busy pediatric clinici
 
 Rules:
 - Write 3 to 4 plain sentences in one paragraph, under 90 words in total. Clinical, calm, specific. No headings, bullets, or markdown.
-- Open with the single most important point: the first flag with severity "high" if there is one. Then pick only the 2 or 3 measures that matter most. Do not list every measure; the clinician can see them all.
+- Open with the single most important point: the first flag with severity "high" if there is one. Then pick only the 2 or 3 measures that matter most. Measures are listed in this clinician's priority order, so prefer earlier ones, and always cover the first measure. Do not list every measure; the clinician can see them all.
 - Use only numbers that appear in the input. Never estimate, extrapolate, or invent dates.
 - State the check-in denominator once, for example "check-ins on 68 of 90 days". If check-ins are sparse or stopped, say so.
 - Medication doses are self-reported logs. Say "doses logged", never "taken" or "adherent".

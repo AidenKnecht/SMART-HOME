@@ -24,9 +24,11 @@ const RANGE_LABEL: Record<string, string> = {
   '90': 'last 90 days',
 }
 
-export function buildSummaryInput(m: Model, rangeKey = 'visit'): SummaryInput {
+/** `order` = the clinician's view measure keys; those come first, so the summary follows their priorities. */
+export function buildSummaryInput(m: Model, rangeKey = 'visit', order: string[] = []): SummaryInput {
   const { doc, stats, gina, flags, last, tracker } = m
-  const measures = measuresFor(m).map((t) => {
+  const rank = (k: string) => (order.includes(k) ? order.indexOf(k) : order.length)
+  const measures = [...measuresFor(m)].sort((a, b) => rank(a.key) - rank(b.key)).map((t) => {
     const v = t.view(m)
     return { label: t.labelFor?.(m) ?? t.label, value: v.value, unit: v.unit, tone: v.tone, change: v.change?.text, note: v.note }
   })
@@ -81,9 +83,12 @@ export function fallbackSummary(i: SummaryInput): string {
 
 // ---------------------------------------------------------------- Cache
 
-const SUMMARY_VERSION = '3'
+const SUMMARY_VERSION = '4'
 const keyFor = (i: SummaryInput, dayRule: string) =>
-  `smarthome.summary.v${SUMMARY_VERSION}|${i.patient.firstName}|${i.range.from}|${i.range.to}|${dayRule}`
+  `smarthome.summary.v${SUMMARY_VERSION}|${i.patient.firstName}|${i.range.from}|${i.range.to}|${dayRule}|${i.measures
+    .slice(0, 4)
+    .map((x) => x.label)
+    .join(',')}`
 
 function readCache(key: string): SummaryResult | undefined {
   try {

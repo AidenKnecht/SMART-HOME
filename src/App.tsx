@@ -58,8 +58,13 @@ export default function App() {
   // Warm the AI summary cache for every patient at the default range, so the demo never waits
   useEffect(() => {
     const t = setTimeout(() => {
+      const views = loadUserViews()
       prefetchSummaries(
-        patients.map((p) => ({ input: buildSummaryInput(buildModel(p, 'visit', 'worst'), 'visit'), dayRule: 'worst' })),
+        patients.map((p) => {
+          const m = buildModel(p, 'visit', 'worst')
+          const v = resolveView(views, clinicians[0], m.ctx.trackerId, p.patientId)
+          return { input: buildSummaryInput(m, 'visit', v.measures), dayRule: 'worst' }
+        }),
       )
     }, 1500)
     return () => clearTimeout(t)
@@ -222,7 +227,7 @@ export default function App() {
                   {base.ownerId === 'preset' ? base.description : `Saved by ${me.name}.`}
                 </span>
               </div>
-              <PreVisitSummary model={model} range={range} dayRule={dayRule} />
+              <PreVisitSummary model={model} range={range} dayRule={dayRule} order={view.measures} />
               {tiles.length > 0 && <SummaryStrip model={model} tiles={tiles} onOpen={setDetailKey} />}
               <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
                 <TrendPanels model={model} panels={view.panels} />

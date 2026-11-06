@@ -7,8 +7,19 @@ import type { Model, RangeKey } from './model'
 
 const timeFmt = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit' })
 
-export function PreVisitSummary({ model, range, dayRule }: { model: Model; range: RangeKey; dayRule: DayRule }) {
-  const input = useMemo(() => buildSummaryInput(model, range), [model, range])
+export function PreVisitSummary({
+  model,
+  range,
+  dayRule,
+  order,
+}: {
+  model: Model
+  range: RangeKey
+  dayRule: DayRule
+  /** The clinician's measure order, so the draft follows their priorities */
+  order: string[]
+}) {
+  const input = useMemo(() => buildSummaryInput(model, range, order), [model, range, order])
   const [result, setResult] = useState<SummaryResult | null>(null)
   const [loading, setLoading] = useState(true)
   const [nonce, setNonce] = useState(0)
