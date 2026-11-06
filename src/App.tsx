@@ -6,6 +6,8 @@ import { PatientHeader, type ViewKey } from '@/components/clinician/PatientHeade
 import { SummaryStrip } from '@/components/clinician/SummaryStrip'
 import { tilesFor } from '@/components/clinician/tiles'
 import { TrendPanels } from '@/components/clinician/TrendPanels'
+import { DailyTimeline } from '@/components/clinician/DailyTimeline'
+import { PortalGrid } from '@/components/clinician/PortalGrid'
 import { demoPatient, patients } from '@/data'
 import { daysToCsv, type DayRule } from '@/lib/derive'
 
@@ -49,9 +51,10 @@ export default function App() {
               <TrendPanels model={model} />
               <ChangeFlags flags={model.flags} />
             </div>
+            <DailyTimeline model={model} dayRule={dayRule} />
           </>
         ) : (
-          <div className="text-muted-foreground">Portal grid (next step)</div>
+          <PortalGrid doc={doc} />
         )}
       </main>
     </TooltipProvider>
