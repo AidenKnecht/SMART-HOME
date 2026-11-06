@@ -35,6 +35,13 @@ other built widgets/detail panel). Always `git pull` first and check `git log` b
     rejected, medication records incl. archived duplicate, top symptoms, plan dates, value chart for
     numeric questions), day-by-day filtered to that measure's columns, link to All data.
   - `ChangeFlags`: "What to discuss today", top 6 + show more; flags with a `measure` open the detail.
+  - `TreatmentEffect` (added 12:55): "Did the treatment change help?" card below the trends. Shown only
+    when `treatmentEvents(ctx)` (derive.ts) finds a medication start, dose change or switch inside
+    the range: Jordan Aug 22, Priya Sep 17; Maya and Sam have none. Stacked panels (one per
+    measure, own units, shared day axis), change-day line, dotted side averages, rolling line
+    restarts at the change, "Doses fell" marker, thin-data note, 30/60 days each side, chips (max 5).
+    Defaults: first 3 view measures + doses logged. Patient mode shows the same split as two
+    "About N a week" blocks with 7 dots and a plain verdict (adherence drop wins over a dose change).
   - `TrendPanels`: FEV1 line (80% predicted ref), rolling adherence area (drop marker + dose-change
     marker), check-in dot rows generated from the tracker's yes/no questions, zone strip; synced by
     `syncId`. Lung/zone parts guard on device + plan.
