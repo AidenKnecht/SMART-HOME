@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronRight, SlidersHorizontal } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -37,12 +37,25 @@ import { daysToCsv, type DayRule } from '@/lib/derive'
 import { buildSummaryInput, prefetchSummaries } from '@/lib/summary'
 import { cn } from '@/lib/utils'
 
+/**
+ * Presenter mode: `/?demo` resets saved views, opens on the first demo beat (Portal today for Jordan)
+ * and turns on number-key shortcuts for each beat. The param is stripped so a reload keeps state.
+ */
+const DEMO = (() => {
+  if (typeof window === 'undefined' || !new URLSearchParams(window.location.search).has('demo')) return false
+  resetAllViews()
+  window.history.replaceState(null, '', window.location.pathname + window.location.hash)
+  sessionStorage.setItem('smarthome.demo', '1')
+  return true
+})() || (typeof window !== 'undefined' && sessionStorage.getItem('smarthome.demo') === '1')
+const MIGRAINE_DEMO = patients.find((p) => p.firstName === 'Priya') ?? demoPatient
+
 export default function App() {
   const [patientId, setPatientId] = useState(demoPatient.id)
   const [clinicianId, setClinicianId] = useState(clinicians[0].id)
   const [range, setRange] = useState<RangeKey>('visit')
   const [dayRule, setDayRule] = useState<DayRule>('worst')
-  const [screen, setScreen] = useState<ViewKey>('clinician')
+  const [screen, setScreen] = useState<ViewKey>(DEMO ? 'portal' : 'clinician')
   const [userViews, setUserViews] = useState<ViewConfig[]>(loadUserViews)
   /** View picked in this session; wins over a patient-pinned view until the patient changes */
   const [pickedId, setPickedId] = useState<string | null>(null)
@@ -56,16 +69,19 @@ export default function App() {
   const model = useMemo(() => buildModel(doc, range, dayRule), [doc, range, dayRule])
   const trackerId = model.ctx.trackerId
 
-  // Warm the AI summary cache for every patient at the default range, so the demo never waits
+  // Warm the AI summary cache for every patient and clinician at the default range, so the demo never
+  // waits on a live call (switching "Viewing as" changes the measure order and so the summary)
   useEffect(() => {
     const t = setTimeout(() => {
       const views = loadUserViews()
       prefetchSummaries(
-        patients.map((p) => {
-          const m = buildModel(p, 'visit', 'worst')
-          const v = resolveView(views, clinicians[0], m.ctx.trackerId, p.patientId)
-          return { input: buildSummaryInput(m, 'visit', v.measures), dayRule: 'worst' }
-        }),
+        clinicians.flatMap((c) =>
+          patients.map((p) => {
+            const m = buildModel(p, 'visit', 'worst')
+            const v = resolveView(views, c, m.ctx.trackerId, p.patientId)
+            return { input: buildSummaryInput(m, 'visit', v.measures), dayRule: 'worst' }
+          }),
+        ),
       )
     }, 1500)
     return () => clearTimeout(t)
@@ -149,6 +165,67 @@ export default function App() {
     setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 350)
   }
   const detailTile = detailKey ? allMeasures.find((t) => t.key === detailKey) : undefined
+
+  // Presenter hotkeys (demo mode only): one key per demo beat, see docs/cue-card.md
+  const beat = (key: string) => {
+    const toClinician = () => {
+      setScreen('clinician')
+      setCustomizing(false)
+    }
+    switch (key) {
+      case '1':
+        choosePatient(demoPatient.id)
+        chooseClinician(clinicians[0].id)
+        setRange('visit')
+        setScreen('portal')
+        break
+      case '2':
+        toClinician()
+        setDetailKey(null)
+        window.scrollTo({ top: 0 })
+        break
+      case '3':
+        toClinician()
+        setDetailKey('fev1')
+        break
+      case '4':
+        toClinician()
+        setDetailKey(null)
+        if (patientId !== demoPatient.id) choosePatient(demoPatient.id)
+        chooseClinician(clinicians[1].id)
+        window.scrollTo({ top: 0 })
+        break
+      case '5':
+        toClinician()
+        choosePatient(MIGRAINE_DEMO.id)
+        setTimeout(() => document.getElementById('effect-h')?.closest('section')?.scrollIntoView({ block: 'start' }), 150)
+        break
+      case '6':
+        if (patientId !== MIGRAINE_DEMO.id) choosePatient(MIGRAINE_DEMO.id)
+        setScreen('patient')
+        setCustomizing(false)
+        window.scrollTo({ top: 0 })
+        break
+    }
+  }
+  const beatRef = useRef(beat)
+  useEffect(() => {
+    beatRef.current = beat
+  })
+  useEffect(() => {
+    if (!DEMO) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey || e.altKey || e.repeat) return
+      const el = e.target as HTMLElement | null
+      if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return
+      if (/^[1-6]$/.test(e.key)) {
+        e.preventDefault()
+        beatRef.current(e.key)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   const viewLabel = (v: ViewConfig) => (v.patientId ? `${v.name} (${doc.firstName} only)` : v.name)
   // Hidden while a measure's detail panel is open (both sit on the right)
