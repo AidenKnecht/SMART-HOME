@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { ChevronRight, SlidersHorizontal } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -13,6 +13,7 @@ import { buildModel, type RangeKey } from '@/components/clinician/model'
 import { PatientHeader, type ViewKey } from '@/components/clinician/PatientHeader'
 import { PatientMode } from '@/components/clinician/PatientMode'
 import { PortalGrid } from '@/components/clinician/PortalGrid'
+import { PreVisitSummary } from '@/components/clinician/PreVisitSummary'
 import { SummaryStrip } from '@/components/clinician/SummaryStrip'
 import { measuresFor } from '@/components/clinician/tiles'
 import { TrendPanels } from '@/components/clinician/TrendPanels'
@@ -32,6 +33,7 @@ import {
 import { clinicians } from '@/data/clinicians'
 import { demoPatient, patients } from '@/data'
 import { daysToCsv, type DayRule } from '@/lib/derive'
+import { buildSummaryInput, prefetchSummaries } from '@/lib/summary'
 import { cn } from '@/lib/utils'
 
 export default function App() {
@@ -52,6 +54,16 @@ export default function App() {
   const me = clinicians.find((c) => c.id === clinicianId) ?? clinicians[0]
   const model = useMemo(() => buildModel(doc, range, dayRule), [doc, range, dayRule])
   const trackerId = model.ctx.trackerId
+
+  // Warm the AI summary cache for every patient at the default range, so the demo never waits
+  useEffect(() => {
+    const t = setTimeout(() => {
+      prefetchSummaries(
+        patients.map((p) => ({ input: buildSummaryInput(buildModel(p, 'visit', 'worst'), 'visit'), dayRule: 'worst' })),
+      )
+    }, 1500)
+    return () => clearTimeout(t)
+  }, [])
 
   const { presets, mine } = viewsFor(userViews, me, trackerId, doc.patientId)
   const pickable = [...presets, ...mine]
@@ -210,6 +222,7 @@ export default function App() {
                   {base.ownerId === 'preset' ? base.description : `Saved by ${me.name}.`}
                 </span>
               </div>
+              <PreVisitSummary model={model} range={range} dayRule={dayRule} />
               {tiles.length > 0 && <SummaryStrip model={model} tiles={tiles} onOpen={setDetailKey} />}
               <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
                 <TrendPanels model={model} panels={view.panels} />
