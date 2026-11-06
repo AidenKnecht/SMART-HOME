@@ -7,6 +7,10 @@ For 0:00–0:25, use the **Portal today** toggle instead of a screenshot: same p
 "Last day logged Nov 2". Flip to **Clinician view** for the payoff. Patient mode is **Show patient**.
 Sam Delgado is the "taking it but not working" case if Q&A asks.
 
+**Before each rehearsal and the real demo:** Settings, then **Reset all saved views**, so Dr. Okafor
+and Dr. Lin start on their presets. Views are stored per browser, so do the demo on the laptop you rehearsed on.
+Priya Nair is the migraine patient (Headache clinic preset; her story is a dose increase that worked).
+
 | Time | Beat | On screen |
 |---|---|---|
 | 0:00–0:25 | **Problem.** "Dr. ___ sees 20 patients today and has 60 seconds before this teen walks in. Here's what SMART@Home shows her now." | The current grid screenshot from the brief |
