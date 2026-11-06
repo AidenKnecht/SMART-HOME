@@ -2,8 +2,9 @@
 
 > **For the Claude Code session building this:** read `CLAUDE.md` first, then this file, then
 > `src/data/types.ts`, `src/data/trackerDefinition.ts`, `scripts/generate.ts` and `scripts/summarize.ts`.
-> Build Step 2 one piece at a time and commit after each working piece. Update the "Clinician notes"
-> in `CLAUDE.md` defaults (day rule, thresholds) if interview answers have arrived.
+> Build Step 2 one piece at a time and commit after each working piece. If the "Clinician notes" in
+> `CLAUDE.md` have answers (worst vs latest, thresholds), use them as the defaults.
+
 ## Context
 Step 1 is done (commit `1ec9326`): app scaffold, tracker definitions, 3 seeded patients, and
 `scripts/summarize.ts` proving the stories. The next step is to make the data *visible*: the
