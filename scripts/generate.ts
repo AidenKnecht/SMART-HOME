@@ -5,7 +5,7 @@
 
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { ASTHMA_TRACKER_ID, asthmaTracker, questionByKey } from '../src/data/trackerDefinition.ts'
+import { ASTHMA_TRACKER_ID, MIGRAINE_TRACKER_ID, asthmaTracker, migraineTracker, questionByKey } from '../src/data/trackerDefinition.ts'
 import type {
   AsthmaTreatmentPlan,
   BaselineReading,
@@ -649,6 +649,150 @@ function generatePatient(cfg: PatientConfig): PatientDocument {
   }
 }
 
+// ---------------------------------------------------------------- Patient D: migraine tracker
+// Proves the clinician view is driven by the tracker definition. Story: frequent headaches,
+// preventive (topiramate) dose increased on day 40 (old entry archived, same name), headache
+// days and pain fall over the following weeks. No spirometer, no asthma action plan.
+
+function generateMigraine(): PatientDocument {
+  const rng = new Rng(4004)
+  const M = {
+    headache: questionByKey(migraineTracker, 'headacheToday'),
+    pain: questionByKey(migraineTracker, 'painScore'),
+    symptoms: questionByKey(migraineTracker, 'symptoms'),
+    hours: questionByKey(migraineTracker, 'hoursLasted'),
+    school: questionByKey(migraineTracker, 'missedSchool'),
+  }
+  const DOSE_CHANGE = 40
+  const preventive: Medication = {
+    id: rng.uuid(),
+    name: 'Topiramate',
+    genericName: 'topiramate',
+    dosage: { amount: 1, unit: 'tablet', strength: '50 mg' },
+    howOften: 'Daily',
+    timesPerDay: 1,
+    icon: 'Pill',
+    relatedCondition: 'Migraine',
+    isController: true,
+    archived: false,
+    index: 1,
+    startDate: dayStr(DOSE_CHANGE),
+  }
+  const oldPreventive: Medication = {
+    ...preventive,
+    id: rng.uuid(),
+    dosage: { amount: 1, unit: 'tablet', strength: '25 mg' },
+    archived: true,
+    index: 0,
+    startDate: '2026-06-20',
+  }
+  const rescue: Medication = {
+    id: rng.uuid(),
+    name: 'Sumatriptan',
+    genericName: 'sumatriptan succinate',
+    dosage: { amount: 1, unit: 'tablet', strength: '25 mg' },
+    howOften: 'As Needed',
+    timesPerDay: null,
+    icon: 'Pill',
+    relatedCondition: 'Migraine',
+    isController: false,
+    archived: false,
+    index: 2,
+    startDate: '2026-06-20',
+  }
+  const reminders: Reminder[] = [
+    { id: rng.uuid(), medicationId: oldPreventive.id, time: '21:00', daysOfWeek: [0, 1, 2, 3, 4, 5, 6], enabled: false },
+    { id: rng.uuid(), medicationId: preventive.id, time: '21:00', daysOfWeek: [0, 1, 2, 3, 4, 5, 6], enabled: true },
+  ]
+
+  const dailyLogs: DailyLog[] = []
+  const earnedTrackerBadges: EarnedBadge[] = []
+  let loggedCount = 0
+  let yesterday = false
+  const SYMPTOMS = ['Nausea', 'Light Sensitivity', 'Sound Sensitivity', 'Aura'] as const
+  for (let d = 0; d < N_DAYS; d++) {
+    // Benefit of the higher dose builds over ~2 weeks after the change
+    const effect = d < DOSE_CHANGE ? 0 : Math.min(1, (d - DOSE_CHANGE) / 14)
+    const risk = clamp(0.47 - 0.27 * effect + (yesterday ? 0.12 : 0) + rng.normal() * 0.04, 0.05, 0.9)
+    const headache = rng.chance(risk)
+    yesterday = headache
+    const pain = headache ? clamp(Math.round(6.6 - 2.2 * effect + rng.normal() * 1.4), 2, 10) : 0
+    const hours = headache ? clamp(Math.round(pain * 0.9 + rng.normal() * 1.6), 1, 24) : 0
+    const symptoms = headache ? SYMPTOMS.filter(() => rng.chance(0.25 + pain * 0.04)) : []
+    const missedSchool = headache && !isWeekend(d) && pain >= 8 && rng.chance(0.75)
+
+    const doses: MedicationAdministration[] = []
+    if (rng.chance(0.9)) {
+      const med = d < DOSE_CHANGE ? oldPreventive : preventive
+      doses.push({ id: rng.uuid(), medicationId: med.id, administeredAt: localIso(d, 21 * 60 + rng.normal() * 30), value: '1' })
+    }
+    if (headache && pain >= 6 && rng.chance(0.75)) {
+      doses.push({ id: rng.uuid(), medicationId: rescue.id, administeredAt: localIso(d, rng.range(9 * 60, 19 * 60)), value: '1' })
+    }
+    doses.sort((a, b) => a.administeredAt.localeCompare(b.administeredAt))
+
+    const submissions: TrackerResponse[] = []
+    const logged = d === N_DAYS - 2 || rng.chance(headache ? 0.92 : 0.8)
+    if (logged && d < N_DAYS - 1) {
+      const answers = (p: number): TrackerAnswer[] => {
+        const r: TrackerAnswer[] = [{ questionId: M.headache.id, value: headache ? 'Yes' : 'No' }]
+        if (headache) {
+          r.push({ questionId: M.pain.id, value: String(p) })
+          r.push({ questionId: M.symptoms.id, value: JSON.stringify(symptoms.length ? symptoms : [M.symptoms.noneValue]) })
+          r.push({ questionId: M.hours.id, value: rng.chance(0.8) ? String(hours) : '' })
+        } else if (rng.chance(0.4)) {
+          r.push({ questionId: M.pain.id, value: '' })
+        }
+        r.push({ questionId: M.school.id, value: missedSchool ? 'Yes' : 'No' })
+        return r
+      }
+      const t = rng.range(16 * 60, 22 * 60)
+      const sub = (minutes: number, responses: TrackerAnswer[]): TrackerResponse => ({
+        id: rng.uuid(),
+        trackerId: MIGRAINE_TRACKER_ID,
+        submittedAt: localIso(d, minutes),
+        responses,
+      })
+      if (rng.chance(0.04)) submissions.push(sub(t, []))
+      else {
+        submissions.push(sub(t, answers(pain)))
+        // Second check-in later the same day, pain re-rated
+        if (headache && rng.chance(0.12)) submissions.push(sub(t + rng.range(20, 120), answers(clamp(pain + rng.pick([-2, 1]), 1, 10))))
+        else if (rng.chance(0.05)) submissions.push(sub(t + rng.range(2, 10), migraineTracker.questions.map((q) => ({ questionId: q.id, value: '' }))))
+        loggedCount++
+        if ([5, 10, 25, 50].includes(loggedCount))
+          earnedTrackerBadges.push({ badgeName: `TrackerBadge${loggedCount}`, date: localIso(d, t) })
+      }
+    }
+    if (!submissions.length && !doses.length) continue
+    dailyLogs.push({
+      id: rng.uuid(),
+      day: dayStr(d),
+      allMedicationsAdministered: false,
+      trackerResponses: submissions,
+      medicationAdministrations: doses,
+    })
+  }
+
+  return {
+    id: rng.uuid(),
+    patientId: 'SH-1071',
+    firstName: 'Priya',
+    lastName: 'Nair',
+    dob: '2010-04-02',
+    age: 16,
+    sex: 'F',
+    enrolledDate: '2026-06-20',
+    assignedTrackerIds: [MIGRAINE_TRACKER_ID],
+    dailyLogs,
+    medications: [oldPreventive, preventive, rescue],
+    reminders,
+    medicalDevices: [],
+    earnedMedicationBadges: [],
+    earnedTrackerBadges,
+  }
+}
+
 // ---------------------------------------------------------------- Main
 
 mkdirSync(OUT_DIR, { recursive: true })
@@ -656,4 +800,9 @@ for (const cfg of patientConfigs) {
   const doc = generatePatient(cfg)
   writeFileSync(join(OUT_DIR, cfg.file), JSON.stringify(doc, null, 2) + '\n')
   console.log(`wrote src/data/patients/${cfg.file}  (${doc.firstName} ${doc.lastName}, ${doc.dailyLogs.length} daily logs)`)
+}
+{
+  const doc = generateMigraine()
+  writeFileSync(join(OUT_DIR, 'patient-d.json'), JSON.stringify(doc, null, 2) + '\n')
+  console.log(`wrote src/data/patients/patient-d.json  (${doc.firstName} ${doc.lastName}, ${doc.dailyLogs.length} daily logs)`)
 }

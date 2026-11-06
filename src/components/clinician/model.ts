@@ -34,12 +34,14 @@ export function buildModel(doc: PatientDocument, range: RangeKey, dayRule: DayRu
   const stats = summarizeRange(days, ctx)
   const first = summarizeRange(firstHalf, ctx)
   const second = summarizeRange(secondHalf, ctx)
-  const gina = ginaControl(ctx, to, dayRule)
+  const tracker = trackerDefinitions[ctx.trackerId]
+  const ginaApplies = ['symptoms', 'nightWaking', 'rescueUsed'].every((k) => tracker.questions.some((q) => q.key === k))
+  const gina = ginaApplies ? ginaControl(ctx, to, dayRule) : null
   const flags = whatChanged(ctx, days, gina)
   return {
     doc,
     ctx,
-    tracker: trackerDefinitions[ctx.trackerId],
+    tracker,
     firstDays: firstHalf,
     secondDays: secondHalf,
     from,

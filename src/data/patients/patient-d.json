@@ -1,0 +1,3249 @@
+{
+  "id": "d95055d0-ef52-4284-934d-32c5e9e659ce",
+  "patientId": "SH-1071",
+  "firstName": "Priya",
+  "lastName": "Nair",
+  "dob": "2010-04-02",
+  "age": 16,
+  "sex": "F",
+  "enrolledDate": "2026-06-20",
+  "assignedTrackerIds": [
+    "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15"
+  ],
+  "dailyLogs": [
+    {
+      "id": "d6e6eb10-aa3a-4c97-a744-a696aea73131",
+      "day": "2026-08-08",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [],
+      "medicationAdministrations": [
+        {
+          "id": "4ecf7cb8-a4a9-45d3-bf60-dd1f6226b677",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-09T00:25:32.401Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "101e4562-b5df-46ad-8e60-5580f646f19e",
+      "day": "2026-08-09",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "f6a2d31a-fd10-4034-9273-0a3d9e5643f2",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-10T01:50:26.461Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "9"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "10"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "49c679c5-1828-46fd-9e5c-4a891775ceb3",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-08-09T20:30:11.722Z",
+          "value": "1"
+        },
+        {
+          "id": "c83696de-fd31-42be-9e36-1ab6d32fd506",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-10T01:12:56.129Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "23415397-8fbc-401c-b25d-4cdd774fb561",
+      "day": "2026-08-10",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [],
+      "medicationAdministrations": [
+        {
+          "id": "1f462b5c-ff02-4ae0-93a9-5253ad73e42a",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-08-10T15:26:33.512Z",
+          "value": "1"
+        },
+        {
+          "id": "f7bb7b9a-4d96-4274-8b3b-6f4d26ea2d59",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-11T00:11:40.907Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "5006307c-2101-4867-9679-4d6b0e6142c1",
+      "day": "2026-08-11",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "d046c53f-02ee-4605-b36e-e9e92854da7b",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-11T20:44:39.887Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "7"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "7"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "e1d8b422-dd4c-47ea-866a-3f8cb02754b3",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-08-11T21:39:22.210Z",
+          "value": "1"
+        },
+        {
+          "id": "b308f94e-82d1-41c7-b29d-74e20fa74bf6",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-12T01:03:29.509Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "0a149bdc-44c3-4c4b-bd74-085a726a0e4f",
+      "day": "2026-08-12",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "1d6e1493-39a5-4ffb-b780-db933fac09bd",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-13T00:10:55.574Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "7"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "6"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        },
+        {
+          "id": "ace73b89-95f5-4a0f-8af1-3f461e0ffcbe",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-13T00:46:18.794Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "8"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "6"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "e9b587d8-9015-4728-97c2-a672a53593ec",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-08-12T15:51:58.127Z",
+          "value": "1"
+        },
+        {
+          "id": "378f85b9-5b65-4596-9562-e1ab311c2187",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-13T00:57:11.420Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "e980877b-d10d-4673-9ab9-6042d5091b57",
+      "day": "2026-08-13",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "ba0dfe0a-9d69-4f89-8555-2075c33f325c",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-13T22:25:21.590Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "7"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Sound Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "6"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "d87a89b3-502c-4ce1-900a-edab03cdac49",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-08-13T13:08:08.346Z",
+          "value": "1"
+        },
+        {
+          "id": "f89d85b3-7da4-4755-aa36-f62db7439a19",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-14T01:35:30.563Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "9d36c101-ff89-4d5f-bc21-fee347a3c950",
+      "day": "2026-08-14",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "89e2a907-a3c2-49bf-851f-4baf458c2be8",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-15T01:36:02.174Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "5"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "fac81671-ff8f-495f-94a5-c1dee722cd3f",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-15T02:01:28.111Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "701fa7c5-57ff-49dd-9964-ea605fef6cbe",
+      "day": "2026-08-15",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [],
+      "medicationAdministrations": [
+        {
+          "id": "d9276428-6768-45b0-adc4-29db8107241b",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-08-15T14:51:46.492Z",
+          "value": "1"
+        },
+        {
+          "id": "9c959956-fa06-40aa-8025-520d4fa361ba",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-16T00:36:35.873Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "f7e148b2-9d1c-4657-bce5-3fb930dd9cdd",
+      "day": "2026-08-16",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "55c1f327-5285-4c4a-b1e2-b8fd0d16badb",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-17T01:13:04.614Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "5"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"None of these\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "b5f3bfb6-ceed-48cb-86a3-4a5390ae93f0",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-17T01:17:20.646Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "01ea8517-555d-495d-877e-7149e263b1d1",
+      "day": "2026-08-17",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "7831f4be-d14c-4e02-84e1-b355e76aaed8",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-18T00:48:36.812Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "fb5b5f2f-8a6b-432c-9ef7-6aa884be9f7c",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-18T00:55:33.918Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "37050dfe-37cb-436d-85a4-eea63b68beba",
+      "day": "2026-08-18",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "46480845-2774-4b3b-83da-49939634790d",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-18T21:55:19.878Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "0641888a-09c7-4bae-b9ee-b5d8da6da075",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-19T01:02:46.411Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "1bff3ea1-c5f9-4799-97f7-71426f7f1d10",
+      "day": "2026-08-19",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "e394ea21-5f34-446b-8533-95237ec9478f",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-19T21:57:10.146Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "ff163895-5a6e-4383-bfd8-df182ad23ce9",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-20T01:23:30.573Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "80377731-6380-44ee-b2cc-40b5d27d1d8f",
+      "day": "2026-08-20",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a3534d82-8994-4a72-834a-31a01440876f",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-21T01:41:32.491Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "a387286a-1218-4895-b163-d95facd66f38",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-21T01:39:27.720Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "6ec203dd-ca56-4382-858b-1d74c63ca9f4",
+      "day": "2026-08-21",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "f4648283-c6f7-4004-a511-16c65d5db659",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-21T21:43:09.155Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "987be0f5-2cb4-4f56-b506-cdb166c578b0",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-22T00:32:37.936Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "223628ba-69f7-4f30-a1c6-c084e49e7140",
+      "day": "2026-08-22",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "25427ac2-5147-4e90-bbd9-b5b7e64829b9",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-22T22:54:54.865Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "f2cdd7b3-dfb0-44b0-9d62-ea9adb8d6051",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-23T00:53:25.599Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "c7d6a1bf-7ccb-47e5-a7f7-87d9502d0b69",
+      "day": "2026-08-23",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [],
+      "medicationAdministrations": [
+        {
+          "id": "71593632-0506-4638-aea1-de28b1a2b181",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-24T01:42:36.020Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "c089d7df-b441-4fa2-b8e3-a99c0560d664",
+      "day": "2026-08-24",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a4f0c328-ca97-4664-8c6b-92fcae7581af",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-24T20:25:46.336Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "7fd26a84-d611-40dc-bf9e-c4b47eb99817",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-25T00:44:51.231Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "2a5b9693-8737-4ec1-8785-9381f3757da4",
+      "day": "2026-08-25",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "85d908a8-f96b-4a4d-98f9-19fdfa5208f4",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-25T20:13:28.451Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": []
+    },
+    {
+      "id": "f412f87c-33c7-4088-872c-87b21dbcfc58",
+      "day": "2026-08-26",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "c2d6accd-0975-44e2-bbff-12b3b900fc34",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-26T22:15:08.341Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "8754d36f-ff2b-492b-9fe9-03699e907606",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-27T01:14:11.736Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "091eaae6-352d-45bf-abbf-816d3baa17ad",
+      "day": "2026-08-27",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "7e025032-e62a-4060-82e8-8b638f03148f",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-27T23:18:11.449Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "a056da18-f03c-4c56-960d-c837a59eb13f",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-28T01:35:09.607Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "573f475c-8ddb-4ef4-9f41-f6e7ca6ad54e",
+      "day": "2026-08-28",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "6fd457c4-1cd4-4d17-868e-c29e5d1766a2",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-28T23:34:52.626Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "7"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Light Sensitivity\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "6"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "405a1065-da85-415e-b435-a53c173badd4",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-29T01:44:59.067Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "512d5b0a-b85c-43f8-948f-d7387f2d9bfb",
+      "day": "2026-08-29",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "fc3312e9-489a-4420-be81-d13a006ec3ef",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-30T00:43:39.050Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "8"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "59bcf86d-7604-44d3-9226-560117a96db8",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-08-29T15:18:09.276Z",
+          "value": "1"
+        },
+        {
+          "id": "3e1adb07-163b-472a-a738-a59751556070",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-30T00:13:55.163Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "4348a340-b3eb-4174-84af-6d4881ba9da2",
+      "day": "2026-08-30",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "fcbf93fc-d49e-43fb-b075-e8a3f95919c1",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-30T20:48:34.427Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "5377f800-71ff-4c84-960c-68432a6c8712",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-08-31T01:55:52.830Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "2358d686-13ea-4e1e-be6d-19401c5fa653",
+      "day": "2026-08-31",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "7a67b702-d181-4a11-ba40-f64cbc2d0ca0",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-08-31T23:14:33.683Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "0490c19f-f6f6-4616-9457-a95cac3a3c24",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-01T00:39:58.619Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "d55dabc4-5fdd-41d0-86b3-9b3cdbd4eedb",
+      "day": "2026-09-02",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a4cd0ce9-8484-4ac9-8f55-7b4bb12d1d42",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-03T00:29:21.517Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "9"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "6"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "Yes"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "8b98e559-0950-4230-8224-a7c25f81a041",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-03T00:37:39.092Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "06e4f020-f42c-4aac-9092-68d3a33a0137",
+      "day": "2026-09-03",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "0ea87006-10cd-4dc9-9293-bdc8770a7b52",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-03T20:55:09.846Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "10"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "7"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "Yes"
+            }
+          ]
+        },
+        {
+          "id": "5ecf9223-b586-4dd4-a003-1c6d5d4e28bd",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-03T22:03:52.305Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "8"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "7"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "Yes"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "055b5764-95af-4085-a1d7-08bc84abedaf",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-09-03T21:11:37.589Z",
+          "value": "1"
+        },
+        {
+          "id": "10a324c7-0c9a-4d16-9eaf-23c695f26b16",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-04T01:00:51.450Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "5deb176e-509f-4414-bd7f-f7228c027948",
+      "day": "2026-09-04",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "8e97e1b8-ff75-453c-aab4-b515fd8ec471",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-05T00:50:39.618Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "7"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "a351806a-c534-4b26-941f-b7c6786f5876",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-09-04T13:25:33.345Z",
+          "value": "1"
+        },
+        {
+          "id": "66777c1d-da9a-4de1-b90e-b43adbd7fc5b",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-05T00:29:49.787Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "a1fc982d-78c5-419b-96f8-83a40719eca4",
+      "day": "2026-09-05",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "59b9c72c-29b4-46f3-8527-1c7138f01dc2",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-05T21:37:06.850Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "3a2eba66-51e1-45ed-8c98-c0c1d0e5c6af",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-06T00:53:10.624Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "d25331da-3f86-4634-8ed8-0dfefc0996a9",
+      "day": "2026-09-06",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "d3708001-9e53-47f4-8265-26fe12b331b9",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-06T22:19:19.172Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "9d5371aa-b163-47c0-926a-4256cee87281",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-07T00:58:46.641Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "f60c0739-ac9d-4bc0-a049-eb592a8cdf17",
+      "day": "2026-09-07",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "634ae7e2-e769-42b2-a06b-5eecab4c69d7",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-07T23:17:08.468Z",
+          "responses": []
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "dab570a6-87c8-4670-8398-1a49af1ab336",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-08T00:56:34.267Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "c706e98c-77dc-418a-bc39-293a147107ac",
+      "day": "2026-09-08",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "4f0554f5-fbf8-4a1c-90ce-4c31efbac0da",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-08T21:12:02.843Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "7"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Sound Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "6"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "f3c78468-ccbf-4332-904f-62f322ade9ed",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-09-08T19:37:27.427Z",
+          "value": "1"
+        },
+        {
+          "id": "e49b2758-4350-4412-bcb1-a8df31931e81",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-09T00:45:03.759Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "5c661e4e-afb7-4927-8922-eba5e845016e",
+      "day": "2026-09-09",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "6b005764-d22c-4ed6-9fdd-19f662c4c253",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-09T21:21:41.850Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "6"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "7"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "7109c41a-fca3-46a0-a306-151c4a48f42b",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-09-09T17:47:23.254Z",
+          "value": "1"
+        },
+        {
+          "id": "6873de41-1411-4493-8e38-85303c03d284",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-10T01:11:50.061Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "3a5bdd93-faec-42f2-847e-e28b4f7184a0",
+      "day": "2026-09-10",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "042cc063-cbaf-4040-8ba6-1d8010c91f69",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-11T00:07:52.208Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "c6228546-daee-4bfe-a0ab-1b86a93f7aaf",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-11T00:43:59.428Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "cd1403fd-437b-4708-96a7-c848b32c41eb",
+      "day": "2026-09-11",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "abc647de-a6f8-4b17-879d-41111a7fafc9",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-11T23:34:53.128Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "7"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "4"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "40824735-915d-46b1-9e95-b1a9718e6e34",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-09-11T15:26:56.317Z",
+          "value": "1"
+        },
+        {
+          "id": "8edac362-d048-427d-b5c4-fd3e39bcf0ce",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-12T00:28:31.463Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "851b111d-13de-4d1c-973c-a319049ea0a2",
+      "day": "2026-09-12",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "8fd6d7a1-c29b-49bf-98f3-864d38751f06",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-13T01:31:46.739Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "9"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Light Sensitivity\",\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "6"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "83741f75-5a85-407a-a83e-d8fc60319751",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-09-12T18:47:10.405Z",
+          "value": "1"
+        },
+        {
+          "id": "84b5a2c8-5b57-40ba-9eb7-e39c425611c4",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-13T00:05:20.436Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "542d80da-484e-4282-af94-1fca62849dc5",
+      "day": "2026-09-13",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "471ab349-e3c8-4ea9-adb2-f72a47c194a5",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-13T23:12:03.980Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "4"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"None of these\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "5110ee21-07fd-4455-926d-733ae7eb968f",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-14T00:57:57.431Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "38201e51-94c8-4093-9385-700a47d01038",
+      "day": "2026-09-14",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "7ead4c92-7d2b-4cbe-9ee8-381dba2b10b0",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-14T23:33:20.676Z",
+          "responses": []
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "7d870007-c35d-40a6-a7aa-4ffff13bde05",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-15T00:46:17.335Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "1dcd3a81-0bd7-41a8-8ced-f37e68ad34fb",
+      "day": "2026-09-15",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "195c7c0e-f874-4948-b3cb-3919e41588ec",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-15T21:06:33.379Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "7"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Light Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "6a8b92e0-e55a-49f0-a045-72524462b8fb",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-09-15T20:32:06.792Z",
+          "value": "1"
+        },
+        {
+          "id": "8d1a99c1-06dc-4da2-8c2a-2a99edbc6fab",
+          "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+          "administeredAt": "2026-09-15T23:57:05.972Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "dfe0af58-0ad8-4cbe-ab62-98d87f66fb98",
+      "day": "2026-09-16",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "46b61516-f085-4d30-aaa7-355bc38b730a",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-17T01:43:58.205Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "6"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"None of these\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "5"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "654f9384-339f-4c99-8c88-9aee6696848b",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-09-16T18:10:12.706Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "0283e148-e17a-42e8-a808-170f557900d2",
+      "day": "2026-09-17",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a1eae866-2ae5-427d-957d-073e84fb8558",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-17T23:07:16.963Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "a28c3c17-cf2e-4e74-926a-66143e428815",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-18T00:59:58.825Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "e3fcff2b-f7e6-4a0a-bba2-c4be14dbff0b",
+      "day": "2026-09-18",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "336ca85a-da9f-4c3e-941b-37f1b5f5e77b",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-19T00:23:32.422Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "370a9618-fdb5-4f48-ad6b-196bd8ab6dc7",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-19T00:19:44.566Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "38458a7a-57b7-4be7-8239-e754f8910665",
+      "day": "2026-09-19",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "df65b3fd-86ca-4d4c-a98e-35d47257eec8",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-19T20:53:01.633Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "8"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Light Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "4"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "1180ac1e-0715-4ec0-9eff-123adeeee69b",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-09-19T16:02:13.366Z",
+          "value": "1"
+        },
+        {
+          "id": "24228aa8-3f36-4068-9393-92aeab18c245",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-20T00:58:56.045Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "7e56f987-0ba4-42d2-92f5-06e029d3ce7e",
+      "day": "2026-09-20",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "041a5a6d-2784-4276-97dc-dace6a2b65c8",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-20T23:00:36.926Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "6"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\",\"Sound Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "8"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "5c2a48e3-9be6-4cbd-93e4-dd79247d711c",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-09-20T16:43:35.836Z",
+          "value": "1"
+        },
+        {
+          "id": "8442d525-15fa-4f49-a98e-68a356a66f9a",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-21T01:18:17.399Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "14a1790d-9b0f-49cd-a7c1-33df8c97a9f8",
+      "day": "2026-09-21",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "2fb7d93d-435f-4afa-89a8-0c60c9b4d26f",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-21T23:27:41.206Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "00a32a02-f3d6-44e5-ad94-abde32f29811",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-22T00:08:08.295Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "673e0bec-e1e0-45e3-8152-29abc2fe3ff2",
+      "day": "2026-09-22",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "b581c1f8-3c42-42c2-b1b7-bb5ae890734c",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-22T20:32:50.624Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "de72b3bf-b8c5-41bc-b475-59976bafbe7a",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-23T00:58:13.690Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "bc207ce5-d3d2-4e25-ac49-976ccb90e5c3",
+      "day": "2026-09-23",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "90fc31d3-8e26-425b-9e85-a7d0caa1caee",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-24T01:44:55.965Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "4"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Sound Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "4"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        },
+        {
+          "id": "923c0858-6cbe-4e2b-bf08-800fc540cdd0",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-24T02:19:49.389Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "5"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Sound Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "4"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": []
+    },
+    {
+      "id": "752707ab-89ed-44c8-9c7c-30a93c289cfb",
+      "day": "2026-09-24",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "1b25970d-e277-4fda-91bd-72bf31d635a0",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-25T00:41:15.131Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "cac0fe75-ee34-4306-ab01-9d1207ea517a",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-25T00:42:13.285Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "4695e70b-7267-425f-a9f1-28d064193ced",
+      "day": "2026-09-25",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "6dbeec64-d176-4475-a22b-35e6d73ddef1",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-25T23:16:44.938Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "88345d7a-6684-4ca9-97f3-c76e67907f03",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-26T01:07:50.157Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "d05f0348-9e4e-45b2-9fb2-1b167dcd7be6",
+      "day": "2026-09-26",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "4762ea61-ff81-48da-9f34-fa9161b8f1a7",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-26T22:26:28.309Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "6979f2e6-1a34-4bba-9176-e85523f91eed",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-27T00:44:28.645Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "c5e7e182-6368-445d-8843-bc8803ac0943",
+      "day": "2026-09-27",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [],
+      "medicationAdministrations": [
+        {
+          "id": "006c5092-fe5c-4d2e-ba76-35b41cc32c52",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-28T00:03:23.374Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "ddcca1e9-62ab-416f-8dc8-dd8209424cdb",
+      "day": "2026-09-28",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "9b6c7651-c9d2-43fa-ad62-af8d5c3e948d",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-28T21:47:32.848Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "7"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Sound Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "19b11790-679d-44bf-9912-bded0d5d578d",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-29T00:49:42.608Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "a1da9f94-eb04-445a-aa0f-94fded718b56",
+      "day": "2026-09-29",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "22a66f66-2688-4031-84a3-3feb0a1d13f8",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-30T00:39:59.045Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "84fcd349-a37e-4b3b-900b-059177b29419",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-09-30T01:31:43.705Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "431e126d-2f9b-40cc-90c5-f5903722fc8e",
+      "day": "2026-09-30",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "74005cc5-e795-45bd-9934-b812be4fc62c",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-09-30T22:22:58.151Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "b19a3426-ded8-47fa-8ffe-e9ca842dc38e",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-01T01:09:56.168Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "aee13196-a3fa-4947-8a17-4961e9c2000e",
+      "day": "2026-10-01",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a798c124-fd7b-455a-a8dd-0e49b09524c3",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-01T22:30:26.270Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "ceeafac3-4c5b-4f1a-9f70-22476b2ee141",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-02T01:43:57.940Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "c434f0bc-c7b0-4766-bd0c-56d67101287f",
+      "day": "2026-10-02",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "d6a69cad-f1b9-472a-a719-bacca470fc1e",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-02T20:14:43.655Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "8a424d3e-42a0-409d-b97d-37ea072d6b42",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-03T01:27:50.334Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "a160c330-6c4b-4552-8fe8-5b9e5e68644b",
+      "day": "2026-10-03",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [],
+      "medicationAdministrations": [
+        {
+          "id": "4d072658-bf30-41c8-b01d-e441fd764d56",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-04T00:52:51.134Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "88facee0-3b5b-4144-a213-5431b127466b",
+      "day": "2026-10-04",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "9dfc9172-0578-4ba7-9d2b-d739517e71fb",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-04T22:41:27.946Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "44838e31-58c4-4ffe-9e3b-cd7031fba3b9",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-04T23:47:09.051Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "e6afb5fa-44e8-4846-af69-292a4a14954d",
+      "day": "2026-10-05",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "d3cf3b13-11d4-4158-ba7d-93d95d368aac",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-05T21:46:22.136Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "1c955560-6cdf-4615-be45-a1b30f09442d",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-06T00:09:25.195Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "ce91f476-63ba-4d28-83ef-9182022e84ce",
+      "day": "2026-10-06",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a6f48125-d6e1-444a-ba86-28f797f7d5d7",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-07T00:05:04.927Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "664572fd-1bfd-443a-b57e-1e20c769d20c",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-07T01:12:18.070Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "8aeb8c06-f543-4a59-a74f-cca0ec536480",
+      "day": "2026-10-08",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "eb570c95-2ed3-4e99-8aec-34b8e89c4b22",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-08T23:42:50.632Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "c30071e0-2bfe-4e71-ada9-1d42994f04d7",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-09T01:21:29.823Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "25ff23b0-a3e7-4351-ae8b-3dfeb72ba7ff",
+      "day": "2026-10-09",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "e592b069-5be5-4455-8ab5-20dd2a920c13",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-09T22:58:55.516Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "8"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Sound Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "Yes"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "5df3f432-e162-4dfe-9ae2-e04c022763d9",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-10-09T18:21:34.552Z",
+          "value": "1"
+        },
+        {
+          "id": "f95b0afe-5928-4bc8-9bc0-234b9f5caf62",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-10T00:43:44.416Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "1db3c306-4cb7-4d7a-b635-69750ab17355",
+      "day": "2026-10-10",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "08500ffb-2072-4383-b6fe-7f73495c100e",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-10T20:13:21.247Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "8d8b918c-7424-463d-ac45-f723c55f0fed",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-11T01:05:37.395Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "c78a2167-0c80-4443-859a-bd93aa130e55",
+      "day": "2026-10-11",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "4d6b2471-e52a-4605-997f-96cbdb0b7022",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-11T20:59:23.817Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "9712298d-8c47-4752-8e96-890b4bce8bdd",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-12T01:22:12.157Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "d2c9b255-acf3-46a1-bf71-cbf8ad52efe5",
+      "day": "2026-10-12",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "82db0853-6a42-4815-ae32-ffa76866f219",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-12T21:17:40.192Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "5"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Sound Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "4"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "0e68a541-b448-4076-bacb-e0523e0a4b76",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-13T01:08:56.971Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "46b82998-7cdc-4d1a-b1fb-ad9e3b929e4c",
+      "day": "2026-10-13",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "d65b3d6c-376a-444d-9609-ae83661d3e99",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-13T20:37:07.866Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "5"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"None of these\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "6"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        },
+        {
+          "id": "0998fe63-cc10-44f1-a256-8c38c8d56147",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-13T21:31:18.745Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "6"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"None of these\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "6"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "30e24a03-252d-48dd-9173-daf2a6dc3446",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-14T00:40:20.252Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "66f59b60-f2a3-42e8-a6d1-f96c582bdfd7",
+      "day": "2026-10-14",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "73eb919a-8141-482c-9a35-e148d099b189",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-15T01:57:12.383Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "4"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Light Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "4"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "2d3b5803-ed92-438e-91a4-beb37ec87814",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-15T00:43:04.646Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "2807524a-f504-4fa5-a253-c5b1734a2d01",
+      "day": "2026-10-15",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [],
+      "medicationAdministrations": [
+        {
+          "id": "05a04a9a-f391-4f86-908b-629cc484a531",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-16T00:41:06.571Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "adf7f3ee-0738-4164-8dab-403c274b0bf7",
+      "day": "2026-10-16",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "57dc8eca-d4bf-4b0e-8c21-3edbf6dc3ccb",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-16T22:57:35.530Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "2"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "417bfaa5-8e69-4c5e-b9f1-d146b3edaaa3",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-17T00:27:50.456Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "b2591e94-bbe3-4321-b052-6ae362b7f876",
+      "day": "2026-10-17",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a472a4e5-f893-448b-8569-36f34b644b3a",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-17T20:08:43.368Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "4"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "5"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "509cbdee-c350-4f1c-90cb-afaf8ec5f2af",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-18T00:42:46.224Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "31341c0a-e9e8-4627-a9ab-4ded36bba422",
+      "day": "2026-10-18",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "1db3c228-00c6-4c96-ac73-74afb7a08cf6",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-18T20:38:17.634Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "4"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Light Sensitivity\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "3"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "d671371b-4a05-4878-acc2-bc6b17cbc5f7",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-19T00:48:53.826Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "ccafd5f8-0797-459e-b601-94bf51ff26c3",
+      "day": "2026-10-19",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a61c878f-4b29-4201-ba0a-0016b1e75086",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-19T21:41:17.388Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "7"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "5fac142d-3b3f-4499-be92-1ac7be507f38",
+          "medicationId": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+          "administeredAt": "2026-10-19T16:08:00.570Z",
+          "value": "1"
+        },
+        {
+          "id": "3e61a626-1e65-4a01-bfec-566d09ac160e",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-20T00:52:37.785Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "36e10344-3a72-4ca1-b50d-5d76cab11269",
+      "day": "2026-10-20",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a7d59ec7-49c3-4e69-856d-76c77e80aef8",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-20T22:49:36.930Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "7d9a3bf1-8382-45dd-b770-49114609f0fb",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-21T01:27:30.705Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "2311303f-1fc7-4e61-aa29-054e9e73ff05",
+      "day": "2026-10-21",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "78bc92f0-8e3c-4e1a-b1b5-cd1610c645f3",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-21T21:51:42.227Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "8f5cf2eb-cc25-46d1-bf41-d97ef1b3cc1b",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-22T00:57:08.859Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "17e78b94-877b-438a-8e22-cdeddfb6660a",
+      "day": "2026-10-22",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "0dd1e180-59b2-41cb-ac68-4d2cfbd67fae",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-22T22:00:21.439Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": []
+    },
+    {
+      "id": "167fcb6a-1fbf-4174-812f-7f5fc760cf2f",
+      "day": "2026-10-23",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "77776d98-3e0d-463a-a876-e1e3448b9896",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-24T01:55:21.892Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "4562f34b-0c75-42ee-9163-a3ac001a06c1",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-24T01:13:17.907Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "69d4a126-1248-40bc-aca0-9b4839b8f25e",
+      "day": "2026-10-24",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "625799b7-826e-49f3-a4c4-2419571491d2",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-24T23:38:54.487Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "ed5381b4-3a94-4c30-a79f-9c8852dc0111",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-25T01:39:51.937Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "fecec431-d238-4e1f-b0af-50af16356ade",
+      "day": "2026-10-25",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "40e29b63-c6fc-45e1-bac0-1abdf12a1512",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-25T23:37:20.369Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "d3e209f9-e1dc-42be-88ca-02528a78f4e3",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-26T01:15:30.962Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "799d6c25-a841-4fc1-80bc-f4ee36b6ec0a",
+      "day": "2026-10-26",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "3564b6e8-7ef5-4f23-9bb7-627d1843d448",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-26T20:49:15.881Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": []
+    },
+    {
+      "id": "9d1aee22-63b1-4b3b-983b-19e661244278",
+      "day": "2026-10-27",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "fa49858c-8339-44a8-8df9-2de11e6f20a1",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-28T00:12:48.606Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "0f4ca8eb-eae2-4536-969c-a6c452d4ed13",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-28T01:24:11.516Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "08e9e928-a309-4c89-83d7-50a81b5ce19d",
+      "day": "2026-10-28",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "65699a99-995a-4f69-ba06-9a8b1caaa502",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-28T20:37:08.647Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "7c6b1b9e-fb07-45b9-910a-1440b6f10609",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-29T00:47:39.430Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "d373ffca-c1df-43df-8cae-4451219662bb",
+      "day": "2026-10-29",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "0790bd31-f8d0-4266-ae80-62640eb338f8",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-29T20:18:12.503Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "3e759ef1-c72e-4959-bd23-dabe16c5c940",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-30T01:22:42.713Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "9815179e-69a1-46ed-8bfb-10a0ce62d356",
+      "day": "2026-10-30",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "598cc5a9-9c86-4c5f-bad8-dd2e03f68e91",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-31T00:03:17.912Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "7893be6a-e17b-4dba-9f05-cee52074edee",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-10-31T01:22:53.024Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "093a023d-17c9-4d10-9b29-b7f07619b226",
+      "day": "2026-10-31",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "71953e14-8461-4270-8f29-dc2f93ec0899",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-10-31T21:17:01.991Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "3cfb2302-9ea7-47e8-9cba-f41e25b8c19b",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-11-01T01:01:24.291Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "2c5e1321-67ed-45a3-b7b6-fb9627babe26",
+      "day": "2026-11-01",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a0332d3d-7b98-4b6a-bb08-328c58c89b04",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-11-02T02:41:09.492Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "90529c9d-8b02-4215-b18c-7bb36a69b422",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-11-02T02:33:20.687Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "9b1fd622-504c-409d-a548-5aaddeb35950",
+      "day": "2026-11-02",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "dd69a737-295e-4811-a6b9-d9ab75f31cf4",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-11-02T21:02:28.565Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "3"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "3"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "c92f4b75-e9cf-4992-b169-2c61e97bd61e",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-11-03T02:31:13.130Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "304c0548-6991-4bad-a8ed-c61d4fc153be",
+      "day": "2026-11-03",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "6f935c28-8b24-41f1-a8f2-2fb626ce31ab",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-11-03T22:04:25.280Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "Yes"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": "4"
+            },
+            {
+              "questionId": "7e40c9d1-6a2b-4f83-b05e-c4d9a1e86f37",
+              "value": "[\"Nausea\",\"Light Sensitivity\",\"Aura\"]"
+            },
+            {
+              "questionId": "b18a5f27-e3c0-4d96-9f12-0a7d6e4c8b53",
+              "value": "4"
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "8cff04fd-5ff5-4158-ac65-c2adc44819e7",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-11-04T01:27:50.943Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "4d41aeb7-1ecc-42d9-96c1-5ea1aab2f5e4",
+      "day": "2026-11-04",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [
+        {
+          "id": "a209c1e8-26ec-4a93-93ca-39c0de74050c",
+          "trackerId": "e8a24f10-3b6c-4d9e-a1f7-62c0b9d84e15",
+          "submittedAt": "2026-11-05T01:43:21.433Z",
+          "responses": [
+            {
+              "questionId": "5b9e1c06-d4a7-4f28-8c3e-71a0f6b2d9e4",
+              "value": "No"
+            },
+            {
+              "questionId": "d2f86a3b-09c1-4e75-a6d4-8e3b1c0f7a59",
+              "value": ""
+            },
+            {
+              "questionId": "2c63e8f0-a95d-4b17-83c4-f6b0d2a9e715",
+              "value": "No"
+            }
+          ]
+        }
+      ],
+      "medicationAdministrations": [
+        {
+          "id": "e77c9046-9895-40ed-922f-d54e11b2c0d4",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-11-05T01:53:47.941Z",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "9ad52c92-5e65-4ebf-aae1-5e9e7d29c6eb",
+      "day": "2026-11-05",
+      "allMedicationsAdministered": false,
+      "trackerResponses": [],
+      "medicationAdministrations": [
+        {
+          "id": "9f7ba1c3-833d-4851-9281-c7809ae48445",
+          "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+          "administeredAt": "2026-11-06T02:17:34.754Z",
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "medications": [
+    {
+      "id": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+      "name": "Topiramate",
+      "genericName": "topiramate",
+      "dosage": {
+        "amount": 1,
+        "unit": "tablet",
+        "strength": "25 mg"
+      },
+      "howOften": "Daily",
+      "timesPerDay": 1,
+      "icon": "Pill",
+      "relatedCondition": "Migraine",
+      "isController": true,
+      "archived": true,
+      "index": 0,
+      "startDate": "2026-06-20"
+    },
+    {
+      "id": "921673e5-1aad-4025-bf93-906bcfae4a65",
+      "name": "Topiramate",
+      "genericName": "topiramate",
+      "dosage": {
+        "amount": 1,
+        "unit": "tablet",
+        "strength": "50 mg"
+      },
+      "howOften": "Daily",
+      "timesPerDay": 1,
+      "icon": "Pill",
+      "relatedCondition": "Migraine",
+      "isController": true,
+      "archived": false,
+      "index": 1,
+      "startDate": "2026-09-17"
+    },
+    {
+      "id": "d8a573fd-3a80-422a-b824-58cd8747abbb",
+      "name": "Sumatriptan",
+      "genericName": "sumatriptan succinate",
+      "dosage": {
+        "amount": 1,
+        "unit": "tablet",
+        "strength": "25 mg"
+      },
+      "howOften": "As Needed",
+      "timesPerDay": null,
+      "icon": "Pill",
+      "relatedCondition": "Migraine",
+      "isController": false,
+      "archived": false,
+      "index": 2,
+      "startDate": "2026-06-20"
+    }
+  ],
+  "reminders": [
+    {
+      "id": "a6b8e1ac-1de8-4428-ac81-d15859a7b900",
+      "medicationId": "618ebfdc-d7b3-4996-8964-b83b7dcd5655",
+      "time": "21:00",
+      "daysOfWeek": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "enabled": false
+    },
+    {
+      "id": "b66ec1ff-5401-449a-8aae-279cf978fd63",
+      "medicationId": "921673e5-1aad-4025-bf93-906bcfae4a65",
+      "time": "21:00",
+      "daysOfWeek": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "enabled": true
+    }
+  ],
+  "medicalDevices": [],
+  "earnedMedicationBadges": [],
+  "earnedTrackerBadges": [
+    {
+      "badgeName": "TrackerBadge5",
+      "date": "2026-08-15T01:36:02.174Z"
+    },
+    {
+      "badgeName": "TrackerBadge10",
+      "date": "2026-08-21T01:41:32.491Z"
+    },
+    {
+      "badgeName": "TrackerBadge25",
+      "date": "2026-09-06T22:19:19.172Z"
+    },
+    {
+      "badgeName": "TrackerBadge50",
+      "date": "2026-10-05T21:46:22.136Z"
+    }
+  ]
+}

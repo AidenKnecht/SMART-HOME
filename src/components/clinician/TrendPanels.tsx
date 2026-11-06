@@ -151,7 +151,25 @@ export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { 
         x={dropIdx}
         stroke={INK}
         strokeDasharray="4 3"
-        label={{ value: `Controller doses fell, ${fmtDay(dropDay!)}`, position: 'insideTopLeft', fill: INK, fontSize: 11 }}
+        label={{ value: `${plan ? 'Controller' : 'Daily'} doses fell, ${fmtDay(dropDay!)}`, position: 'insideTopLeft', fill: INK, fontSize: 11 }}
+      />
+    ) : null
+  // Dose change: a new active daily-medication entry with an archived entry of the same name
+  const activeMed = doc.medications.find((m) => ctx.controllerIds.has(m.id) && !m.archived)
+  const oldMed = activeMed && doc.medications.find((m) => m.archived && m.name === activeMed.name)
+  const changeIdx = activeMed && oldMed ? days.findIndex((d) => d.day === activeMed.startDate) : -1
+  const changeLine =
+    changeIdx > 0 && activeMed && oldMed ? (
+      <ReferenceLine
+        x={changeIdx}
+        stroke={MUTED}
+        strokeDasharray="1 3"
+        label={{
+          value: `${activeMed.name} ${oldMed.dosage.strength} to ${activeMed.dosage.strength}, ${fmtDay(activeMed.startDate)}`,
+          position: 'insideBottomLeft',
+          fill: MUTED,
+          fontSize: 11,
+        }}
       />
     ) : null
   const margin = { top: 8, right: RIGHT, bottom: 4, left: 0 }
@@ -200,7 +218,10 @@ export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { 
   )
   const med = (
     <>
-      <PanelTitle title="Controller medication" note="Doses logged as taken, 7-day rolling % of scheduled. Self-reported." />
+      <PanelTitle
+        title={`${plan ? 'Controller' : 'Daily'} medication${activeMed ? `: ${activeMed.name}` : ''}`}
+        note="Doses logged as taken, 7-day rolling % of scheduled. Self-reported."
+      />
       <div className="h-28">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={margin} {...syncProps}>
@@ -217,6 +238,7 @@ export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { 
             />
             <ReferenceLine y={80} stroke={MUTED} strokeDasharray="2 3" label={{ value: '80% goal', position: 'insideBottomRight', fill: MUTED, fontSize: 11 }} />
             {dropLine}
+            {changeLine}
             {tip}
             <Area
               dataKey="adherence"

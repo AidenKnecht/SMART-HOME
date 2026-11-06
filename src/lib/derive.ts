@@ -230,8 +230,8 @@ export function patientContext(doc: PatientDocument): PatientContext {
 }
 
 function spiroForDay(ctx: PatientContext, readings: BaselineReading[] | undefined): SpiroDay | undefined {
-  if (!readings?.length) return undefined
   const plan = ctx.doc.asthmaTreatmentPlan
+  if (!readings?.length || !plan) return undefined
   const accepted = readings.filter((r) => r.accepted)
   const best = worstBy(accepted, (r) => r.fev1)
   const coaching = [...new Set(readings.flatMap((r) => r.qualityReport.qualityIndications.map((q) => humanizeCode(q.code))))]
@@ -608,13 +608,43 @@ export interface Flag {
   text: string
 }
 
-export function whatChanged(ctx: PatientContext, days: DaySummary[], gina: GinaResult): Flag[] {
+export function whatChanged(ctx: PatientContext, days: DaySummary[], gina: GinaResult | null): Flag[] {
   const flags: Flag[] = []
   const [a, b] = halves(days)
   const sa = summarizeRange(a, ctx)
   const sb = summarizeRange(b, ctx)
   const all = summarizeRange(days, ctx)
   const plan = ctx.doc.asthmaTreatmentPlan
+  const medWord = plan ? 'Controller' : 'Daily medication'
+  const tracker = trackerDefinitions[ctx.trackerId]
+
+  // Generic: any yes/no or numeric question whose rate or average moved between halves
+  for (const q of tracker?.questions ?? []) {
+    if (['rescueUsed', 'missedSchool', 'nightWaking'].includes(q.key)) continue
+    const qa = questionStats(a, q)
+    const qb = questionStats(b, q)
+    if (q.type === 'yesNo' && qa.answeredDays >= 5 && qb.answeredDays >= 5) {
+      const wa = perWeek(qa.yesDays ?? 0, a.length)
+      const wb = perWeek(qb.yesDays ?? 0, b.length)
+      if (Math.abs(wb - wa) >= 1) {
+        flags.push({
+          key: `q:${q.key}`,
+          severity: wb > wa ? 'medium' : 'info',
+          text: `${q.shortLabel} ${wb > wa ? 'up' : 'down'} from ${wa} to ${wb} days per week`,
+        })
+      }
+    } else if ((q.type === 'scale1to10' || q.type === 'number') && qa.mean !== undefined && qb.mean !== undefined) {
+      const tol = q.type === 'scale1to10' ? 1.5 : Math.max(1, qa.mean * 0.3)
+      if (Math.abs(qb.mean - qa.mean) >= tol && qa.answeredDays >= 3 && qb.answeredDays >= 3) {
+        const unit = q.type === 'scale1to10' ? ' of 10' : q.unit ? ` ${q.unit}` : ''
+        flags.push({
+          key: `q:${q.key}`,
+          severity: qb.mean > qa.mean ? 'medium' : 'info',
+          text: `${q.shortLabel} average ${qb.mean > qa.mean ? 'up' : 'down'} from ${qa.mean} to ${qb.mean}${unit}`,
+        })
+      }
+    }
+  }
 
   if (sa.adherencePct !== undefined && sb.adherencePct !== undefined) {
     if (sa.adherencePct - sb.adherencePct >= THRESHOLDS.adherenceDropPts) {
@@ -622,14 +652,14 @@ export function whatChanged(ctx: PatientContext, days: DaySummary[], gina: GinaR
       flags.push({
         key: 'adherence',
         severity: 'high',
-        text: `Controller doses logged fell from ${sa.adherencePct}% to ${sb.adherencePct}%${drop ? ` (below ${THRESHOLDS.adherenceLowPct}% from ${fmtDay(drop)})` : ''}`,
+        text: `${medWord} doses logged fell from ${sa.adherencePct}% to ${sb.adherencePct}%${drop ? ` (below ${THRESHOLDS.adherenceLowPct}% from ${fmtDay(drop)})` : ''}`,
       })
     }
   }
   if (
     all.adherencePct !== undefined &&
     all.adherencePct >= THRESHOLDS.adherenceGoodPct &&
-    gina.level === 'not'
+    gina?.level === 'not'
   ) {
     flags.push({
       key: 'not-working',
@@ -654,7 +684,11 @@ export function whatChanged(ctx: PatientContext, days: DaySummary[], gina: GinaR
   const ra = perWeek(sa.rescueDays, sa.daysInRange)
   const rb = perWeek(sb.rescueDays, sb.daysInRange)
   if (rb - ra >= THRESHOLDS.rescueRiseDaysPerWk) {
-    flags.push({ key: 'rescue', severity: 'medium', text: `Rescue inhaler use up from ${ra} to ${rb} days per week` })
+    flags.push({
+      key: 'rescue',
+      severity: 'medium',
+      text: `Rescue ${plan ? 'inhaler' : 'medication'} use up from ${ra} to ${rb} days per week`,
+    })
   }
   if (all.zones.red > 0) {
     flags.push({ key: 'red', severity: 'high', text: `${all.zones.red} red-zone day${all.zones.red > 1 ? 's' : ''}` })
@@ -669,12 +703,12 @@ export function whatChanged(ctx: PatientContext, days: DaySummary[], gina: GinaR
     flags.push({ key: 'school', severity: 'medium', text: `Missed ${all.schoolDays} school day${all.schoolDays > 1 ? 's' : ''}` })
   }
   const today = addDays(ctx.asOf, 1)
-  if (plan.retestTime && plan.retestTime.slice(0, 10) < today) {
+  if (plan?.retestTime && plan.retestTime.slice(0, 10) < today) {
     flags.push({ key: 'retest', severity: 'medium', text: `Action plan retest overdue since ${fmtDay(plan.retestTime.slice(0, 10))}` })
-  } else if (plan.retestTime && daysBetween(today, plan.retestTime.slice(0, 10)) <= THRESHOLDS.planExpiringDays) {
+  } else if (plan?.retestTime && daysBetween(today, plan.retestTime.slice(0, 10)) <= THRESHOLDS.planExpiringDays) {
     flags.push({ key: 'retest-soon', severity: 'info', text: `Action plan retest due ${fmtDay(plan.retestTime.slice(0, 10))}` })
   }
-  if (plan.expirationDate && daysBetween(today, plan.expirationDate.slice(0, 10)) <= THRESHOLDS.planExpiringDays) {
+  if (plan?.expirationDate && daysBetween(today, plan.expirationDate.slice(0, 10)) <= THRESHOLDS.planExpiringDays) {
     flags.push({ key: 'expiring', severity: 'medium', text: `Action plan expires ${fmtDay(plan.expirationDate.slice(0, 10))}` })
   }
   const la = lastActivity(ctx.doc)
@@ -682,7 +716,7 @@ export function whatChanged(ctx: PatientContext, days: DaySummary[], gina: GinaR
     flags.push({
       key: 'silent',
       severity: 'medium',
-      text: `No symptom check-in since ${fmtDay(la.tracker)}, but doses and spirometry continue to ${fmtDay(la.overall)}`,
+      text: `No symptom check-in since ${fmtDay(la.tracker)}, but ${ctx.doc.medicalDevices.length ? 'doses and spirometry continue' : 'doses continue'} to ${fmtDay(la.overall)}`,
     })
   }
   if (all.conflictDays > 0) {

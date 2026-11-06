@@ -24,6 +24,8 @@ export type MeasureGroup = 'Summary' | 'Lung function' | 'Action plan' | 'Check-
 export interface TileDef {
   key: string
   label: string
+  /** Optional data-aware label, e.g. 'Controller' for asthma, 'Daily medication' otherwise */
+  labelFor?: (m: Model) => string
   group: MeasureGroup
   /** One-line description for the Customize panel */
   hint: string
@@ -62,7 +64,9 @@ export const BUILT_IN: TileDef[] = [
     hint: 'GINA-style, from the four control questions over the last 4 weeks',
     wide: true,
     available: (m) => hasQ(m, 'symptoms', 'nightWaking', 'rescueUsed'),
-    view: ({ gina }) => ({
+    view: ({ gina: g }) => {
+      const gina = g!
+      return {
       value: gina.label,
       tone: gina.level === 'well' ? 'good' : gina.level === 'partly' ? 'warn' : 'bad',
       note: `GINA-style, from home data, last 4 weeks. Based on ${gina.basedOnDays} of ${gina.windowDays} days with a check-in.`,
@@ -83,11 +87,13 @@ export const BUILT_IN: TileDef[] = [
           ))}
         </ul>
       ),
-    }),
+      }
+    },
   },
   {
     key: 'adherence',
     label: 'Controller doses logged',
+    labelFor: (m) => (isAsthma(m) ? 'Controller doses logged' : 'Daily medication doses logged'),
     group: 'Summary',
     hint: 'Scheduled daily medication marked as taken (self-reported)',
     available: (m) => m.ctx.controllerIds.size > 0,

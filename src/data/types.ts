@@ -167,7 +167,8 @@ export interface PatientDocument {
   medications: Medication[]
   reminders: Reminder[]
   medicalDevices: MedicalDevice[]
-  asthmaTreatmentPlan: AsthmaTreatmentPlan
+  /** Asthma only; absent for other trackers */
+  asthmaTreatmentPlan?: AsthmaTreatmentPlan
   earnedMedicationBadges: EarnedBadge[]
   earnedTrackerBadges: EarnedBadge[]
 }

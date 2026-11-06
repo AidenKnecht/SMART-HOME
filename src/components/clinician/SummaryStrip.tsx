@@ -49,7 +49,7 @@ export function SummaryStrip({ model, tiles }: { model: Model; tiles: TileDef[] 
             >
               <h3 className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
                 {tone && <tone.Icon className={cn('size-3.5 shrink-0', tone.cls)} aria-label={tone.label} />}
-                {t.label}
+                {t.labelFor?.(model) ?? t.label}
               </h3>
               <p className="mt-1 flex items-baseline gap-1">
                 <span className={cn('font-semibold tracking-tight', t.wide ? 'text-xl' : 'text-2xl')}>{v.value}</span>

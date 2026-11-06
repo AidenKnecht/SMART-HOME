@@ -150,6 +150,7 @@ for (const file of files) {
   const scheduledPerHalf = [45, 45, 30].map((days) => days * 2)
   const wk = (n: number, days: number) => ((n / days) * 7).toFixed(1)
   const plan = doc.asthmaTreatmentPlan
+  if (!plan) continue // non-asthma trackers are checked by scripts/check-derive.ts
 
   console.log(`\n=== ${doc.firstName} ${doc.lastName} (${doc.patientId}, ${doc.age}${doc.sex})  [${file}] ===`)
   console.log(`  Tracker: ${trackerDefinitions[doc.assignedTrackerIds[0]].name}`)

@@ -6,4 +6,5 @@ export const lastVisitByPatientId: Record<string, string> = {
   'SH-1042': '2026-09-07', // Maya Robinson
   'SH-1057': '2026-08-07', // Jordan Whitfield (90 days: whole story visible)
   'SH-1063': '2026-09-07', // Sam Delgado
+  'SH-1071': '2026-08-07', // Priya Nair (migraine; dose change mid-range)
 }

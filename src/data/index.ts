@@ -3,8 +3,9 @@ import type { PatientDocument } from './types.ts'
 import patientA from './patients/patient-a.json'
 import patientB from './patients/patient-b.json'
 import patientC from './patients/patient-c.json'
+import patientD from './patients/patient-d.json'
 
-export const patients = [patientB, patientA, patientC] as unknown as PatientDocument[]
+export const patients = [patientB, patientA, patientC, patientD] as unknown as PatientDocument[]
 export const demoPatient = patients[0]
 
 export * from './trackerDefinition.ts'
