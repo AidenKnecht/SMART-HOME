@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.vercel/
+.playwright-mcp/
+*.log
+.DS_Store
