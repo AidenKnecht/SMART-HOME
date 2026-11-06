@@ -20,18 +20,20 @@ export function PreVisitSummary({
   order: string[]
 }) {
   const input = useMemo(() => buildSummaryInput(model, range, order), [model, range, order])
-  const [result, setResult] = useState<SummaryResult | null>(null)
-  const [loading, setLoading] = useState(true)
   const [nonce, setNonce] = useState(0)
   const [copied, setCopied] = useState(false)
+  // The result remembers which request it answers; loading = the latest request has no answer yet.
+  const [answered, setAnswered] = useState<{ input: typeof input; dayRule: DayRule; nonce: number; result: SummaryResult } | null>(
+    null,
+  )
+  const loading = !answered || answered.input !== input || answered.dayRule !== dayRule || answered.nonce !== nonce
+  // Keep showing the previous text while the next one loads, so the card does not jump
+  const result = answered?.result ?? null
 
   useEffect(() => {
     const ctrl = new AbortController()
-    setLoading(true)
     getSummary(input, dayRule, { force: nonce > 0, signal: ctrl.signal }).then((r) => {
-      if (ctrl.signal.aborted) return
-      setResult(r)
-      setLoading(false)
+      if (!ctrl.signal.aborted) setAnswered({ input, dayRule, nonce, result: r })
     })
     return () => ctrl.abort()
   }, [input, dayRule, nonce])
@@ -52,7 +54,7 @@ export function PreVisitSummary({
         <span className="text-muted-foreground text-xs" title={result?.reason}>
           {label}
         </span>
-        <div className="ml-auto flex gap-1">
+        <div className="ml-auto flex gap-1 print:hidden">
           <Button
             variant="ghost"
             size="sm"

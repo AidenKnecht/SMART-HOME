@@ -150,7 +150,8 @@ export default function App() {
   const detailTile = detailKey ? allMeasures.find((t) => t.key === detailKey) : undefined
 
   const viewLabel = (v: ViewConfig) => (v.patientId ? `${v.name} (${doc.firstName} only)` : v.name)
-  const showPanel = customizing && screen === 'clinician' && !!draft
+  // Hidden while a measure's detail panel is open (both sit on the right)
+  const showPanel = customizing && screen === 'clinician' && !!draft && !detailKey
 
   return (
     <TooltipProvider delayDuration={150}>
@@ -182,7 +183,7 @@ export default function App() {
         <main className="mx-auto max-w-[1600px] space-y-4 px-6 py-4">
           {screen === 'clinician' ? (
             <>
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3 print:hidden">
                 <span className="text-sm font-medium">View</span>
                 <Select value={base.id} onValueChange={chooseView}>
                   <SelectTrigger className="h-8 w-[260px]" aria-label="Saved view">
@@ -239,7 +240,7 @@ export default function App() {
                 />
               </div>
               {view.columns.length > 0 && (
-                <details id="day-by-day" className="group/day">
+                <details id="day-by-day" className="group/day print:hidden">
                   <summary className="bg-card flex cursor-pointer list-none items-baseline gap-2 rounded-lg border px-4 py-2.5 group-open/day:rounded-b-none group-open/day:border-b-0">
                     <ChevronRight className="size-4 self-center transition-transform group-open/day:rotate-90" aria-hidden />
                     <span className="text-sm font-semibold">Day by day</span>
@@ -250,7 +251,9 @@ export default function App() {
                   <DailyTimeline model={model} dayRule={dayRule} columns={view.columns} />
                 </details>
               )}
-              <AllData model={model} />
+              <div className="print:hidden">
+                <AllData model={model} />
+              </div>
               <MeasureDetail
                 model={model}
                 tile={detailTile}

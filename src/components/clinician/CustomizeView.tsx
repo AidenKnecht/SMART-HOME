@@ -83,7 +83,7 @@ function OrderedPicker({
                       key={r.key}
                       title={r.hint}
                       onClick={() => onChange([...selected.filter((k) => items.some((i) => i.key === k)), r.key])}
-                      className="hover:bg-accent hover:text-accent-foreground flex items-center gap-1 rounded-md border border-dashed px-2 py-1 text-xs"
+                      className="hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring flex items-center gap-1 rounded-md border border-dashed px-2 py-1 text-xs outline-none focus-visible:ring-2"
                     >
                       <Plus className="size-3" aria-hidden />
                       {r.label}

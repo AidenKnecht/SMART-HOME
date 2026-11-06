@@ -167,7 +167,18 @@ export function columnsFor(m: Model): ColumnDef[] {
   ]
 }
 
-export function DailyTimeline({ model, dayRule, columns }: { model: Model; dayRule: DayRule; columns: string[] }) {
+export function DailyTimeline({
+  model,
+  dayRule,
+  columns,
+  scroll = true,
+}: {
+  model: Model
+  dayRule: DayRule
+  columns: string[]
+  /** Own scroll box; off inside the detail panel, which scrolls as a whole */
+  scroll?: boolean
+}) {
   const [open, setOpen] = useState<Set<string>>(new Set())
   const toggle = (day: string) =>
     setOpen((s) => {
@@ -193,7 +204,7 @@ export function DailyTimeline({ model, dayRule, columns }: { model: Model; dayRu
           {dayRule === 'worst' ? 'worst answer counts' : 'latest answer counts'}).
         </span>
       </div>
-      <div className="max-h-[560px] overflow-auto">
+      <div className={scroll ? 'max-h-[560px] overflow-auto' : 'overflow-x-auto'}>
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr>

@@ -164,7 +164,7 @@ export function MeasureDetail({ model, tile, dayRule, onClose, onAllData }: Prop
             <div className="space-y-5 px-6 py-5">
               {spec.panels.length > 0 && <TrendPanels model={model} panels={spec.panels} tall />}
               <Extra k={tile.key} model={model} />
-              <DailyTimeline model={model} dayRule={dayRule} columns={columns} />
+              <DailyTimeline model={model} dayRule={dayRule} columns={columns} scroll={false} />
               <button
                 type="button"
                 onClick={onAllData}

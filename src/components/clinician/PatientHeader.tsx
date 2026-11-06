@@ -84,7 +84,7 @@ export function PatientHeader(p: Props) {
           </TooltipContent>
         </Tooltip>
 
-        <div className="ml-auto flex flex-wrap items-center gap-3">
+        <div className="ml-auto flex flex-wrap items-center gap-3 print:hidden">
           <ToggleGroup
             type="single"
             variant="outline"

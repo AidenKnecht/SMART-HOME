@@ -110,6 +110,8 @@ function writeCache(key: string, r: SummaryResponse) {
 // ---------------------------------------------------------------- Fetch
 
 export async function fetchSummary(input: SummaryInput, signal?: AbortSignal): Promise<SummaryResponse> {
+  // `vite dev` has no serverless function and the key lives only in Vercel: skip the call
+  if (import.meta.env.DEV) throw new Error('Local dev: the AI runs only on the deployed site')
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), 15_000)
   signal?.addEventListener('abort', () => ctrl.abort())

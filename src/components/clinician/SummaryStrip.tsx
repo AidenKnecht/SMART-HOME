@@ -64,7 +64,7 @@ export function SummaryStrip({ model, tiles, onOpen }: { model: Model; tiles: Ti
     <section aria-label="Summary" className="space-y-2">
       <p className="text-sm">
         <span className="font-semibold">{headline}.</span>{' '}
-        <span className="text-muted-foreground text-xs">
+        <span className="text-muted-foreground text-xs print:hidden">
           Click a widget for its chart and day-by-day detail. &ldquo;Was, now&rdquo; compares the first and second half of the range.
         </span>
       </p>
@@ -95,7 +95,7 @@ export function SummaryStrip({ model, tiles, onOpen }: { model: Model; tiles: Ti
                       {label}
                     </button>
                   </h3>
-                  <ChevronRight className="text-muted-foreground size-4 shrink-0 opacity-40" aria-hidden />
+                  <ChevronRight className="text-muted-foreground size-4 shrink-0 opacity-40 print:hidden" aria-hidden />
                 </div>
                 <p className="mt-1 flex items-baseline gap-1">
                   <span className={cn('font-semibold tracking-tight', t.wide ? 'text-xl' : 'text-2xl')}>{v.value}</span>

@@ -53,7 +53,7 @@ export function ChangeFlags({ flags, onOpen }: { flags: Flag[]; onOpen?: (measur
       {flags.length > FIRST && (
         <button
           onClick={() => setAll((x) => !x)}
-          className="text-primary w-full border-t px-4 py-2 text-left text-sm font-medium hover:underline"
+          className="text-primary w-full border-t px-4 py-2 text-left text-sm font-medium hover:underline print:hidden"
           aria-expanded={all}
         >
           {all ? 'Show fewer' : `Show ${flags.length - FIRST} more`}
