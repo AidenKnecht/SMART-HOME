@@ -4,6 +4,8 @@ Read `CLAUDE.md` first (brief, data quirks, clinician quotes). This file holds w
 the code or the git log. Live: https://smart-home-kit.vercel.app (Vercel project `smart-home-kit`;
 deploy with `vercel --prod --yes` from the repo root; deploys are manual, so redeploy after merging).
 
+Update 12:05: the AI pre-visit summary is live (see Next steps 1).
+
 **Two Claude sessions have been committing to `main` in parallel** (one built views/customize, the
 other built widgets/detail panel). Always `git pull` first and check `git log` before planning.
 
@@ -72,11 +74,15 @@ other built widgets/detail panel). Always `git pull` first and check `git log` b
   run `vercel --prod --yes` yourself.
 
 ## Next steps (planned order; the 1:00 PM demoable build is already met)
-1. **AI pre-visit summary.** CLAUDE.md allows one serverless function; key in env, never in client.
-   Plan: `api/summary.ts` (Vercel function) calls Claude with the `RangeStats` + flags JSON (no raw
-   free text), returns 3–4 plain sentences. Cached fallback per patient in `src/data/summaries.ts`
-   so the demo can't fail offline. Label it "AI draft, check before use". Use the `claude-api` skill
-   for current model ids and SDK usage.
+1. **AI pre-visit summary: DONE and live (12:05).** `api/summary.ts` (Vercel Function, web handler)
+   calls the OpenAI Responses API, model `gpt-6.1-terra` (override with env `OPENAI_MODEL`), key in
+   Vercel env `OPENAI_API_KEY` (Production + Preview only, so it does not run under `vite dev`).
+   Input = `SummaryInput` (`src/lib/summaryTypes.ts`): on-screen measure values in the clinician's
+   view order, GINA criteria, flags, range counts, first name. Client logic in `src/lib/summary.ts`:
+   localStorage cache (bump `SUMMARY_VERSION` after changing the instructions), rule-based
+   `fallbackSummary` when the call fails (local dev always shows it), prefetch of all four patients
+   for Dr. Okafor on load. UI: `PreVisitSummary.tsx` above the widget grid. Tested live: 405 on GET,
+   413 over 40 KB, ~3 s per call, drafts checked for all four patients.
 2. **Polish pass** with the `impeccable` skill: widget wrapping at 1280 px, the Customize aside on
    smaller screens, keyboard focus in the ordered picker, detail-sheet scroll, print of the widget grid.
 3. **Pitch support**: regenerate screenshots (`.playwright-mcp/` is gitignored), final Q&A list in
