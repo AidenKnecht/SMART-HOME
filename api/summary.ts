@@ -10,7 +10,8 @@ const TIMEOUT_MS = 12_000
 const INSTRUCTIONS = `You write a pre-visit summary for a busy pediatric clinician who has one minute before an adolescent patient walks in. The input is a JSON snapshot of a home-monitoring dashboard: patient basics, the date range, each measure (label, value, unit, tone, change, note), control criteria, and discussion flags.
 
 Rules:
-- Write 3 to 4 plain sentences in one paragraph. Clinical, calm, specific. No headings, bullets, or markdown.
+- Write 3 to 4 plain sentences in one paragraph, under 90 words in total. Clinical, calm, specific. No headings, bullets, or markdown.
+- Open with the single most important point: the first flag with severity "high" if there is one. Then pick only the 2 or 3 measures that matter most. Do not list every measure; the clinician can see them all.
 - Use only numbers that appear in the input. Never estimate, extrapolate, or invent dates.
 - State the check-in denominator once, for example "check-ins on 68 of 90 days". If check-ins are sparse or stopped, say so.
 - Medication doses are self-reported logs. Say "doses logged", never "taken" or "adherent".

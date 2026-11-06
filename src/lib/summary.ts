@@ -81,7 +81,7 @@ export function fallbackSummary(i: SummaryInput): string {
 
 // ---------------------------------------------------------------- Cache
 
-const SUMMARY_VERSION = '2'
+const SUMMARY_VERSION = '3'
 const keyFor = (i: SummaryInput, dayRule: string) =>
   `smarthome.summary.v${SUMMARY_VERSION}|${i.patient.firstName}|${i.range.from}|${i.range.to}|${dayRule}`
 
