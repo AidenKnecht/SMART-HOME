@@ -15,7 +15,7 @@ Priya Nair is the migraine patient (Headache clinic preset; her story is a dose 
 |---|---|---|
 | 0:00–0:25 | **Problem.** "Dr. ___ sees 20 patients today and has 60 seconds before this teen walks in. Here's what SMART@Home shows her now." | The current grid screenshot from the brief |
 | 0:25–0:40 | **What clinicians told us.** "They might all say here's our top 3 things, but they put different value on it." "It's noise until it's not." | Quote on a slide or overlay |
-| 0:40–1:40 | **The 30-second view.** Control status, adherence, symptom days, FEV1 trend, zone days, "what changed." Tell the story: adherence dropped → symptoms rose → FEV1 dipped. | Summary strip + timeline |
+| 0:40–1:40 | **The 30-second view.** "Three need attention." Red widgets are control, rescue and zones. FEV1 and doses are yellow, and each has its own sparkline. Read the charts below: controller doses fell Sep 25, symptoms rose, FEV1 dipped. **Click the FEV1 widget**: the detail panel shows the big chart, every blow including rejected ones, and only the FEV1 days. Close it. **Click the doses flag** in "What to discuss today": same panel, for adherence, with the archived duplicate Advair record. "Simple first, the evidence one click down." | Widget grid, detail panel, flags |
 | 1:40–2:10 | **Every clinician gets their own view.** Switch "Viewing as" from Dr. Okafor to Dr. Lin: same Jordan, different measures first. Open **Customize**, tick Night waking, move it first, save. "Hidden is never deleted": open **All data**. Switch to Priya (migraine): the same panel offers headache days and pain, built from the tracker. | Viewing as, Customize, All data, migraine patient |
 | 2:10–2:35 | **In the visit.** Patient mode: "Here's what she shows the teen." (+ AI summary if built) | Patient mode |
 | 2:35–3:00 | **Why it's feasible.** Built on SMART@Home's real data shape; handles duplicate entries, text-encoded values, med ID linking; honest about self-reported doses. Close with impact. | Short "data quirks handled" list |
@@ -27,4 +27,6 @@ Priya Nair is the migraine patient (Headache clinic preset; her story is a dose 
 - **Won't clinicians hide something important?** "Hide, never delete. All data is one click down, because it's noise until it's not."
 - **Who maintains the views?** "The clinician, in about 20 seconds, no developer. Presets give a starting point per specialty."
 - **Where are views stored?** "In the browser for the prototype. In production they'd live with the clinician's portal account."
+- **Why not just red and green?** "Color never works alone here: every widget pairs it with an icon and a word, for color-blind readers and printouts. Grey means not enough data, which is different from fine."
+- **Why not reorder widgets by urgency?** "Clinicians told us each one weighs things differently, so their saved order stays. The count line says how many need attention."
 - **Something we don't know:** say so plainly. It's scored.

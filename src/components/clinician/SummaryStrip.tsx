@@ -112,7 +112,7 @@ export function SummaryStrip({ model, tiles, onOpen }: { model: Model; tiles: Ti
                 {v.change && <ChangeLine change={v.change} />}
                 {v.viz && <div className="mt-2">{v.viz}</div>}
                 {v.detail}
-                <p className="text-muted-foreground mt-auto line-clamp-2 pt-1.5 text-[11px] leading-snug" title={v.note}>
+                <p className="text-muted-foreground mt-auto line-clamp-2 pt-1.5 text-xs leading-snug" title={v.note}>
                   {v.note}
                 </p>
               </div>
