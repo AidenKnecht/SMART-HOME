@@ -1,5 +1,6 @@
 import { lastVisitByPatientId } from '@/data/visits'
 import type { PatientDocument } from '@/data/types'
+import { trackerDefinitions } from '@/data/trackerDefinition'
 import {
   addDays,
   adherenceDropDay,
@@ -14,7 +15,6 @@ import {
 } from '@/lib/derive'
 
 export type RangeKey = 'visit' | '14' | '30' | '90'
-export type Lens = 'pulm' | 'pcp' | 'nurse' | 'gi' | 'neuro'
 
 export function rangeBounds(doc: PatientDocument, range: RangeKey, asOf: string, firstDay: string) {
   let from: string
@@ -39,6 +39,9 @@ export function buildModel(doc: PatientDocument, range: RangeKey, dayRule: DayRu
   return {
     doc,
     ctx,
+    tracker: trackerDefinitions[ctx.trackerId],
+    firstDays: firstHalf,
+    secondDays: secondHalf,
     from,
     to,
     days,

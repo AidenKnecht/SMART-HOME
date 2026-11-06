@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import { Check, X } from 'lucide-react'
-import { fmtDay, perWeek, type RangeStats } from '@/lib/derive'
-import type { Lens, Model } from './model'
+import type { Question } from '@/data/types'
+import { fmtDay, perWeek, questionStats, type RangeStats } from '@/lib/derive'
+import type { Model } from './model'
 import { zoneFill } from './Zone'
 import { cn } from '@/lib/utils'
 
@@ -19,18 +20,26 @@ export interface TileView {
   note: string
   detail?: ReactNode
 }
+export type MeasureGroup = 'Summary' | 'Lung function' | 'Action plan' | 'Check-in questions'
 export interface TileDef {
   key: string
   label: string
-  /** Lenses this tile appears in; order within a lens comes from LENS_ORDER */
-  lenses: Lens[]
+  group: MeasureGroup
+  /** One-line description for the Customize panel */
+  hint: string
   wide?: boolean
+  /** Whether this patient's data can support the measure (tracker questions, devices, plan) */
+  available: (m: Model) => boolean
   view: (m: Model) => TileView
 }
 
-const ALL: Lens[] = ['pulm', 'pcp', 'nurse', 'gi', 'neuro']
-
-function compare(a: number | undefined, b: number | undefined, higherIsWorse: boolean, tol: number, fmt: (x: number) => string): Change | undefined {
+function compare(
+  a: number | undefined,
+  b: number | undefined,
+  higherIsWorse: boolean,
+  tol: number,
+  fmt: (x: number) => string,
+): Change | undefined {
   if (a === undefined || b === undefined) return undefined
   const diff = b - a
   const direction = Math.abs(diff) <= tol ? 'same' : (diff > 0) === higherIsWorse ? 'worse' : 'better'
@@ -39,13 +48,20 @@ function compare(a: number | undefined, b: number | undefined, higherIsWorse: bo
 
 const wk = (s: RangeStats, n: number) => perWeek(n, s.daysInRange)
 const loggedNote = (s: RangeStats) => `of ${s.loggedDays} days with a check-in (${s.daysInRange} in range)`
+const hasQ = (m: Model, ...keys: string[]) => keys.every((k) => m.tracker.questions.some((q) => q.key === k))
+const isAsthma = (m: Model) => m.tracker.condition === 'Asthma'
+const rescueName = (m: Model) =>
+  m.doc.medications.find((x) => m.ctx.rescueIds.has(x.id) && !x.archived)?.name.replace(/ HFA$/, '') ?? 'rescue'
 
-export const TILES: TileDef[] = [
+/** Measures computed from several signals at once. */
+export const BUILT_IN: TileDef[] = [
   {
     key: 'control',
     label: 'Asthma control',
-    lenses: ALL,
+    group: 'Summary',
+    hint: 'GINA-style, from the four control questions over the last 4 weeks',
     wide: true,
+    available: (m) => hasQ(m, 'symptoms', 'nightWaking', 'rescueUsed'),
     view: ({ gina }) => ({
       value: gina.label,
       tone: gina.level === 'well' ? 'good' : gina.level === 'partly' ? 'warn' : 'bad',
@@ -72,22 +88,27 @@ export const TILES: TileDef[] = [
   {
     key: 'adherence',
     label: 'Controller doses logged',
-    lenses: ALL,
-    view: ({ stats, first, second }) => {
+    group: 'Summary',
+    hint: 'Scheduled daily medication marked as taken (self-reported)',
+    available: (m) => m.ctx.controllerIds.size > 0,
+    view: (m) => {
+      const { stats, first, second } = m
       const p = stats.adherencePct
       return {
         value: p === undefined ? 'No data' : `${p}`,
         unit: p === undefined ? undefined : '%',
         tone: p === undefined ? 'neutral' : p >= 80 ? 'good' : p >= 60 ? 'warn' : 'bad',
         change: compare(first.adherencePct, second.adherencePct, false, 5, (x) => `${x}%`),
-        note: `${stats.controllerDoses} of ${stats.scheduledDoses} scheduled doses. Self-reported as taken, not verified.`,
+        note: `${stats.controllerDoses} of ${stats.scheduledDoses} scheduled ${isAsthma(m) ? '' : 'daily-medication '}doses. Self-reported as taken, not verified.`,
       }
     },
   },
   {
     key: 'symptoms',
     label: 'Symptom days',
-    lenses: ALL,
+    group: 'Summary',
+    hint: 'Days with any symptom ticked',
+    available: (m) => hasQ(m, 'symptoms'),
     view: ({ stats, first, second }) => ({
       value: `${stats.symptomDays}`,
       unit: 'days',
@@ -98,20 +119,27 @@ export const TILES: TileDef[] = [
   },
   {
     key: 'rescue',
-    label: 'Rescue inhaler days',
-    lenses: ['pulm', 'pcp', 'nurse'],
-    view: ({ stats, first, second }) => ({
-      value: `${stats.rescueDays}`,
-      unit: 'days',
-      tone: wk(stats, stats.rescueDays) > 2 ? 'bad' : 'neutral',
-      change: compare(wk(first, first.rescueDays), wk(second, second.rescueDays), true, 0.5, (x) => `${x}/wk`),
-      note: `From check-in answers and logged albuterol doses (${stats.rescueDosesTotal} doses).`,
-    }),
+    label: 'Rescue medication days',
+    group: 'Summary',
+    hint: 'Days with rescue use, from check-in answers or logged doses',
+    available: (m) => m.ctx.rescueIds.size > 0 || hasQ(m, 'rescueUsed'),
+    view: (m) => {
+      const { stats, first, second } = m
+      return {
+        value: `${stats.rescueDays}`,
+        unit: 'days',
+        tone: wk(stats, stats.rescueDays) > 2 ? 'bad' : 'neutral',
+        change: compare(wk(first, first.rescueDays), wk(second, second.rescueDays), true, 0.5, (x) => `${x}/wk`),
+        note: `From check-in answers and logged ${rescueName(m).toLowerCase()} doses (${stats.rescueDosesTotal} doses).`,
+      }
+    },
   },
   {
     key: 'fev1',
     label: 'FEV1, latest best blow',
-    lenses: ['pulm', 'pcp'],
+    group: 'Lung function',
+    hint: 'Home spirometry, best accepted blow, % of predicted and trend',
+    available: (m) => m.doc.medicalDevices.length > 0 && !!m.doc.asthmaTreatmentPlan,
     view: ({ stats, doc }) => ({
       value: stats.fev1Latest !== undefined ? stats.fev1Latest.toFixed(2) : 'No data',
       unit: stats.fev1Latest !== undefined ? 'L' : undefined,
@@ -134,13 +162,15 @@ export const TILES: TileDef[] = [
               rising: stats.fev1ChangePct > 0,
             }
           : undefined,
-      note: `${stats.fev1LatestPctPredicted ?? '–'}% of predicted ${doc.asthmaTreatmentPlan.predictedFev1.toFixed(2)} L, on ${fmtDay(stats.fev1LatestDay ?? '')}. Accepted blows only.`,
+      note: `${stats.fev1LatestPctPredicted ?? '–'}% of predicted ${doc.asthmaTreatmentPlan?.predictedFev1.toFixed(2)} L, on ${fmtDay(stats.fev1LatestDay ?? '')}. Accepted blows only.`,
     }),
   },
   {
     key: 'zones',
     label: 'Action plan zone days',
-    lenses: ['pulm', 'pcp', 'nurse'],
+    group: 'Action plan',
+    hint: 'Green, yellow and red days from the app’s action plan',
+    available: (m) => !!m.doc.asthmaTreatmentPlan,
     view: ({ stats, first, second }) => {
       const z = stats.zones
       const total = stats.zoneDays || 1
@@ -163,26 +193,119 @@ export const TILES: TileDef[] = [
   {
     key: 'school',
     label: 'School days missed',
-    lenses: ALL,
+    group: 'Summary',
+    hint: 'Days the teen reported missing school',
+    available: (m) => hasQ(m, 'missedSchool'),
     view: ({ stats, first, second }) => ({
       value: `${stats.schoolDays}`,
       unit: 'days',
       tone: stats.schoolDays > 0 ? 'warn' : 'good',
       change: compare(first.schoolDays, second.schoolDays, true, 0, (x) => `${x}`),
-      note: `Night waking from asthma on ${stats.nightDays} ${stats.nightDays === 1 ? 'night' : 'nights'}.`,
+      note: `Reported on check-ins; ${stats.loggedDays} of ${stats.daysInRange} days had one.`,
     }),
   },
 ]
 
-/** Tile order per specialty lens (Step 3). Tiles not listed for a lens are hidden. */
-export const LENS_ORDER: Record<Lens, string[]> = {
-  pulm: ['control', 'fev1', 'adherence', 'rescue', 'zones', 'symptoms', 'school'],
-  pcp: ['control', 'adherence', 'symptoms', 'rescue', 'fev1', 'zones', 'school'],
-  nurse: ['adherence', 'zones', 'control', 'rescue', 'symptoms', 'school'],
-  gi: ['control', 'adherence', 'symptoms', 'school'],
-  neuro: ['control', 'adherence', 'symptoms', 'school'],
+/** Question keys already represented by a built-in measure. */
+const COVERED = new Set(['symptoms', 'rescueUsed', 'missedSchool', 'spirometry'])
+
+function rangeLabel(n: number) {
+  return `${n} ${n === 1 ? 'day' : 'days'}`
 }
 
-export function tilesFor(lens: Lens): TileDef[] {
-  return LENS_ORDER[lens].map((k) => TILES.find((t) => t.key === k)!).filter((t) => t.lenses.includes(lens))
+/** One generic measure for a tracker question, rendered by its question type. */
+export function questionTile(q: Question): TileDef {
+  const key = `q:${q.key}`
+  const base = { key, label: q.shortLabel, group: 'Check-in questions' as const, hint: q.text, available: () => true }
+  const halves = (m: Model) => [questionStats(m.firstDays, q), questionStats(m.secondDays, q)] as const
+  switch (q.type) {
+    case 'yesNo':
+      return {
+        ...base,
+        view: (m) => {
+          const s = questionStats(m.days, q)
+          const [a, b] = halves(m)
+          return {
+            value: `${s.yesDays ?? 0}`,
+            unit: 'days',
+            tone: 'neutral',
+            change: compare(a.yesDays, b.yesDays, true, 0, (x) => rangeLabel(x)),
+            note: `Answered “yes” on ${rangeLabel(s.yesDays ?? 0)} of ${s.answeredDays} answered.`,
+          }
+        },
+      }
+    case 'number':
+    case 'scale1to10':
+      return {
+        ...base,
+        view: (m) => {
+          const s = questionStats(m.days, q)
+          const [a, b] = halves(m)
+          const unit = q.type === 'scale1to10' ? 'of 10' : q.unit
+          return {
+            value: s.mean !== undefined ? `${s.mean}` : 'No data',
+            unit: s.mean !== undefined ? `${unit ?? ''} average`.trim() : undefined,
+            tone: 'neutral',
+            change: compare(a.mean, b.mean, true, q.type === 'scale1to10' ? 0.5 : 0.3, (x) => `${x}`),
+            note: s.answeredDays ? `On ${rangeLabel(s.answeredDays)} answered. Highest ${s.max}${unit && unit !== 'of 10' ? ` ${unit}` : ''}.` : 'Not answered in this range.',
+          }
+        },
+      }
+    case 'checkbox':
+    case 'icon':
+      return {
+        ...base,
+        view: (m) => {
+          const s = questionStats(m.days, q)
+          return {
+            value: `${s.anyDays ?? 0}`,
+            unit: 'days',
+            tone: 'neutral',
+            note: `Days with at least one ticked, of ${s.answeredDays} answered.`,
+            detail: s.topItems?.length ? (
+              <div className="mt-2 flex flex-wrap gap-1">
+                {s.topItems.slice(0, 4).map((t) => (
+                  <span key={t.label} className="bg-secondary rounded-sm px-1.5 py-px text-xs">
+                    {t.label} <span className="text-muted-foreground">{t.count}</span>
+                  </span>
+                ))}
+              </div>
+            ) : undefined,
+          }
+        },
+      }
+    default: {
+      // faceScale / singleChoice: count days in the worse half of the scale
+      return {
+        ...base,
+        view: (m) => {
+          const s = questionStats(m.days, q)
+          const [a, b] = halves(m)
+          const maxSev = Math.max(0, ...(q.options ?? []).map((o) => o.severity ?? 0))
+          const cut = Math.ceil((maxSev + 1) / 2)
+          const worse = (x: typeof s) => x.distribution?.filter((o) => o.severity >= cut).reduce((n, o) => n + o.count, 0) ?? 0
+          const cutLabel = q.options?.find((o) => o.severity === cut)?.label ?? ''
+          return {
+            value: `${worse(s)}`,
+            unit: 'days',
+            tone: 'neutral',
+            change: compare(worse(a), worse(b), true, 0, (x) => rangeLabel(x)),
+            note: `“${cutLabel}” or worse, of ${s.answeredDays} answered.`,
+            detail: (
+              <p className="text-muted-foreground mt-1 text-xs">
+                {s.distribution?.map((o) => `${o.label} ${o.count}`).join(', ')}
+              </p>
+            ),
+          }
+        },
+      }
+    }
+  }
+}
+
+/** Every measure this patient's data supports: built-ins first, then one per remaining question. */
+export function measuresFor(m: Model): TileDef[] {
+  const builtIns = BUILT_IN.filter((t) => t.available(m))
+  const questions = m.tracker.questions.filter((q) => !COVERED.has(q.key)).map(questionTile)
+  return [...builtIns, ...questions]
 }

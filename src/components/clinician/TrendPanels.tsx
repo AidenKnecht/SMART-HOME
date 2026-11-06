@@ -14,6 +14,7 @@ import {
 import { fmtDay, fmtWeekday, rollingAdherence, type DaySummary } from '@/lib/derive'
 import { cn } from '@/lib/utils'
 import type { Model } from './model'
+import type { Panel } from './views'
 import { ZONE_LABEL, zoneFill } from './Zone'
 
 // Shared horizontal geometry so Recharts plots and HTML rows line up day for day.
@@ -42,20 +43,22 @@ function DayTip({ d, model }: { d?: DaySummary; model: Model }) {
       <p className="font-semibold">
         {fmtWeekday(d.day)} {fmtDay(d.day)}
       </p>
-      <p>
-        FEV1:{' '}
-        {s?.fev1 !== undefined
-          ? `${s.fev1.toFixed(2)} L (${s.pctPredicted}% predicted)`
-          : s
-            ? `no accepted blow (${s.rejected} rejected)`
-            : 'not done'}
-      </p>
+      {model.doc.medicalDevices.length > 0 && (
+        <p>
+          FEV1:{' '}
+          {s?.fev1 !== undefined
+            ? `${s.fev1.toFixed(2)} L (${s.pctPredicted}% predicted)`
+            : s
+              ? `no accepted blow (${s.rejected} rejected)`
+              : 'not done'}
+        </p>
+      )}
       <p>
         Controller doses logged: {d.controllerDoses} of {model.ctx.dosesPerDay}
       </p>
       <p>Symptoms: {d.status !== 'logged' ? 'no check-in' : d.symptoms.length ? d.symptoms.join(', ').toLowerCase() : 'none'}</p>
       <p>Rescue: {d.rescueAny ? `yes (${d.rescueDoses} doses logged)` : d.status === 'logged' ? 'no' : 'no check-in'}</p>
-      <p>Zone: {d.zone ? ZONE_LABEL[d.zone] : 'none recorded'}</p>
+      {model.doc.asthmaTreatmentPlan && <p>Zone: {d.zone ? ZONE_LABEL[d.zone] : 'none recorded'}</p>}
     </div>
   )
 }
@@ -107,8 +110,6 @@ function DayRow({
   )
 }
 
-export type Panel = 'lung' | 'meds' | 'checkins'
-
 export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { model: Model; panels?: Panel[] }) {
   const { days, ctx, doc, dropDay } = model
   const [hover, setHover] = useState<number | null>(null)
@@ -122,7 +123,10 @@ export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { 
     doses: d.controllerDoses,
   }))
   const n = days.length
-  const predicted = doc.asthmaTreatmentPlan.predictedFev1
+  const plan = doc.asthmaTreatmentPlan
+  const hasLung = doc.medicalDevices.length > 0 && !!plan
+  const hasMeds = ctx.controllerIds.size > 0
+  const predicted = plan?.predictedFev1 ?? 1
   const ref80 = Math.round(predicted * 0.8 * 100) / 100
   const fevVals = data.map((p) => p.fev1).filter((x): x is number => x !== undefined)
   const yMin = Math.floor(Math.min(ref80, ...fevVals) * 10 - 2) / 10
@@ -231,7 +235,19 @@ export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { 
 
     </>
   )
-  const order = panels.filter((p) => p !== "checkins")
+  type Row = [string, (d: DaySummary) => boolean]
+  const order = panels.filter((p) => (p === 'lung' ? hasLung : p === 'meds' ? hasMeds : false))
+  const showCheckins = panels.includes('checkins')
+  const rows: Row[] = [
+    ...(model.tracker.questions.some((q) => q.key === 'symptoms')
+      ? [['Symptoms', (d: DaySummary) => d.symptoms.length > 0] as Row]
+      : []),
+    ...(ctx.rescueIds.size > 0 ? [['Rescue', (d: DaySummary) => d.rescueAny] as Row] : []),
+    ...model.tracker.questions
+      .filter((q) => q.type === 'yesNo' && q.key !== 'rescueUsed' && q.key !== 'missedSchool')
+      .map((q) => [q.shortLabel, (d: DaySummary) => d.answers[q.key] === true] as Row),
+  ]
+  if (!order.length && !showCheckins) return null
 
   return (
     <section aria-labelledby="trend-h" className="bg-card rounded-lg border pb-3">
@@ -240,15 +256,9 @@ export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { 
       </h2>
 
       {order.map((p) => (p === "lung" ? <Fragment key={p}>{lung}</Fragment> : <Fragment key={p}>{med}</Fragment>))}
-      <PanelTitle title="Daily check-ins" note="Filled dot: yes. Small dash: no check-in that day." />
+      {showCheckins && <PanelTitle title="Daily check-ins" note="Filled dot: yes. Small dash: no check-in that day." />}
       <div className="mt-1 space-y-1">
-        {(
-          [
-            ['Symptoms', (d: DaySummary) => d.symptoms.length > 0],
-            ['Rescue inhaler', (d: DaySummary) => d.rescueAny],
-            ['Night waking', (d: DaySummary) => !!d.nightWaking],
-          ] as const
-        ).map(([label, yes]) => (
+        {(showCheckins ? rows : []).map(([label, yes]) => (
           <DayRow
             key={label}
             label={label}
@@ -265,16 +275,18 @@ export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { 
             }}
           />
         ))}
-        <DayRow
-          label="Zone"
-          days={days}
-          hover={hover}
-          onHover={setHover}
-          cell={(d) => ({
-            cls: cn('h-4 w-full border-r-2 border-card', d.zone ? zoneFill[d.zone] : 'bg-muted'),
-            title: `${fmtDay(d.day)}: ${d.zone ? `${ZONE_LABEL[d.zone]} zone` : 'no zone recorded'}`,
-          })}
-        />
+        {showCheckins && plan && (
+          <DayRow
+            label="Zone"
+            days={days}
+            hover={hover}
+            onHover={setHover}
+            cell={(d) => ({
+              cls: cn('h-4 w-full border-r-2 border-card', d.zone ? zoneFill[d.zone] : 'bg-muted'),
+              title: `${fmtDay(d.day)}: ${d.zone ? `${ZONE_LABEL[d.zone]} zone` : 'no zone recorded'}`,
+            })}
+          />
+        )}
         {/* Date labels */}
         <div className="flex" style={{ paddingRight: RIGHT }}>
           <div style={{ width: GUTTER }} className="shrink-0" />
@@ -293,16 +305,18 @@ export function TrendPanels({ model, panels = ['lung', 'meds', 'checkins'] }: { 
           </div>
         </div>
       </div>
-      <div className="text-muted-foreground mt-2 flex flex-wrap items-center gap-4 text-xs" style={{ paddingLeft: GUTTER }}>
-        {(['green', 'yellow', 'red'] as const).map((z) => (
-          <span key={z} className="flex items-center gap-1.5">
-            <span className={cn('size-2.5 rounded-sm', zoneFill[z])} aria-hidden /> {ZONE_LABEL[z]} zone
+      {showCheckins && plan && (
+        <div className="text-muted-foreground mt-2 flex flex-wrap items-center gap-4 text-xs" style={{ paddingLeft: GUTTER }}>
+          {(['green', 'yellow', 'red'] as const).map((z) => (
+            <span key={z} className="flex items-center gap-1.5">
+              <span className={cn('size-2.5 rounded-sm', zoneFill[z])} aria-hidden /> {ZONE_LABEL[z]} zone
+            </span>
+          ))}
+          <span className="flex items-center gap-1.5">
+            <span className="bg-muted size-2.5 rounded-sm border" aria-hidden /> No zone recorded
           </span>
-        ))}
-        <span className="flex items-center gap-1.5">
-          <span className="bg-muted size-2.5 rounded-sm border" aria-hidden /> No zone recorded
-        </span>
-      </div>
+        </div>
+      )}
     </section>
   )
 }

@@ -6,6 +6,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { trackerDefinitions } from '@/data/trackerDefinition'
 import type { PatientDocument } from '@/data/types'
+import type { Clinician } from '@/data/clinicians'
 import { fmtDay, type DayRule } from '@/lib/derive'
 import type { Model, RangeKey } from './model'
 
@@ -22,6 +23,10 @@ interface Props {
   view: ViewKey
   onView: (v: ViewKey) => void
   onExport: () => void
+  clinicians: Clinician[]
+  clinicianId: string
+  onClinician: (id: string) => void
+  onResetViews: () => void
 }
 
 export function PatientHeader(p: Props) {
@@ -32,6 +37,19 @@ export function PatientHeader(p: Props) {
       <div className="mx-auto flex max-w-[1600px] flex-wrap items-center gap-x-6 gap-y-3 px-6 py-3">
         <div className="flex items-center gap-3">
           <span className="text-primary text-sm font-bold">SMART@Home</span>
+          <Select value={p.clinicianId} onValueChange={p.onClinician}>
+            <SelectTrigger className="h-8 w-[270px]" aria-label="Viewing as">
+              <span className="text-muted-foreground text-xs">Viewing as</span>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {p.clinicians.map((c) => (
+                <SelectItem key={c.id} value={c.id}>
+                  {c.name}, {c.role}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           <Select value={doc.id} onValueChange={p.onPatient}>
             <SelectTrigger className="h-8 w-[200px]" aria-label="Patient">
               <SelectValue />
@@ -104,6 +122,13 @@ export function PatientHeader(p: Props) {
                 <ToggleGroupItem value="worst" className="px-3">Worst of day</ToggleGroupItem>
                 <ToggleGroupItem value="latest" className="px-3">Latest entry</ToggleGroupItem>
               </ToggleGroup>
+              <div className="mt-4 border-t pt-3">
+                <p className="font-semibold">Saved views</p>
+                <p className="text-muted-foreground mt-1 text-xs">Views are saved in this browser for the prototype.</p>
+                <Button variant="outline" size="sm" className="mt-2" onClick={p.onResetViews}>
+                  Reset all saved views
+                </Button>
+              </div>
             </PopoverContent>
           </Popover>
           <Button variant="outline" size="sm" onClick={p.onExport}>

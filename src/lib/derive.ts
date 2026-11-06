@@ -4,6 +4,7 @@
 import { getQuestion, parseValue, trackerDefinitions } from '../data/trackerDefinition.ts'
 import type {
   BaselineReading,
+  Question,
   Medication,
   PatientDocument,
   TrackerResponse,
@@ -142,12 +143,39 @@ export interface DaySummary {
   spirometry?: SpiroDay
   conflict?: string
   changedAnswer?: string
+  /** Every tracker question aggregated to one value per day, by question type and day rule */
+  answers: Record<string, unknown>
 }
 
 function optionSeverity(trackerId: string, key: string, value: string | undefined): number {
   if (value === undefined) return -1
   const q = trackerDefinitions[trackerId]?.questions.find((x) => x.key === key)
   return q?.options?.find((o) => o.value === value)?.severity ?? -1
+}
+
+const isNone = (q: Question, v: string) => !!q.noneValue && v.trim() === q.noneValue.trim()
+
+/** Aggregate one question across a day's real entries, by question type. */
+function aggregateQuestion(q: Question, vals: unknown[], dayRule: DayRule): unknown {
+  if (!vals.length) return undefined
+  const sevOf = (v: unknown) => q.options?.find((o) => o.value === v)?.severity ?? -1
+  switch (q.type) {
+    case 'checkbox':
+    case 'icon': {
+      const lists = vals.map((v) => (v as string[]).filter((x) => !isNone(q, x)))
+      return dayRule === 'latest' ? lists.at(-1) : [...new Set(lists.flat())]
+    }
+    case 'yesNo':
+      return dayRule === 'latest' ? vals.at(-1) : vals.some(Boolean)
+    case 'number':
+    case 'scale1to10':
+      return dayRule === 'latest' ? vals.at(-1) : Math.max(...(vals as number[]))
+    case 'faceScale':
+    case 'singleChoice':
+      return dayRule === 'latest' ? vals.at(-1) : worstBy(vals, sevOf)
+    default:
+      return vals.at(-1)
+  }
 }
 
 function worstBy<T>(values: T[], score: (v: T) => number): T | undefined {
@@ -293,6 +321,18 @@ function buildDay(ctx: PatientContext, day: string, dayRule: DayRule): DaySummar
     spirometry: spiroForDay(ctx, ctx.readingsByDay.get(day)),
     conflict,
     changedAnswer,
+    answers: Object.fromEntries(
+      (trackerDefinitions[tid]?.questions ?? [])
+        .filter((q) => q.type !== 'spirometry')
+        .map((q) => [
+          q.key,
+          aggregateQuestion(
+            q,
+            real.map((e) => e.answers[q.key]).filter((v) => v !== undefined),
+            dayRule,
+          ),
+        ]),
+    ),
   }
 }
 
@@ -300,6 +340,63 @@ function buildDay(ctx: PatientContext, day: string, dayRule: DayRule): DaySummar
 export function buildDays(ctx: PatientContext, from: string, to: string, dayRule: DayRule): DaySummary[] {
   const out: DaySummary[] = []
   for (let d = from; d <= to; d = addDays(d, 1)) out.push(buildDay(ctx, d, dayRule))
+  return out
+}
+
+// ---------------------------------------------------------------- Per-question stats (generic tiles)
+
+export interface QuestionStats {
+  answeredDays: number
+  yesDays?: number
+  mean?: number
+  max?: number
+  /** checkbox/icon: days each item was reported, most frequent first */
+  topItems?: { label: string; count: number }[]
+  /** checkbox/icon: days with at least one item */
+  anyDays?: number
+  /** faceScale/singleChoice: days per option, in option order */
+  distribution?: { label: string; value: string; severity: number; count: number }[]
+  worst?: string
+}
+
+export function questionStats(days: DaySummary[], q: Question): QuestionStats {
+  const vals = days.map((d) => d.answers[q.key]).filter((v) => v !== undefined)
+  const label = (v: string) => q.options?.find((o) => o.value === v)?.label ?? v
+  const out: QuestionStats = { answeredDays: vals.length }
+  switch (q.type) {
+    case 'yesNo':
+      out.yesDays = vals.filter(Boolean).length
+      break
+    case 'number':
+    case 'scale1to10': {
+      const n = vals as number[]
+      if (n.length) {
+        out.mean = round(n.reduce((a, b) => a + b, 0) / n.length, 1)
+        out.max = Math.max(...n)
+      }
+      break
+    }
+    case 'checkbox':
+    case 'icon': {
+      const counts = new Map<string, number>()
+      for (const list of vals as string[][]) for (const x of list) counts.set(x, (counts.get(x) ?? 0) + 1)
+      out.topItems = [...counts].sort((a, b) => b[1] - a[1]).map(([v, count]) => ({ label: label(v), count }))
+      out.anyDays = (vals as string[][]).filter((l) => l.length).length
+      break
+    }
+    case 'faceScale':
+    case 'singleChoice': {
+      out.distribution = (q.options ?? []).map((o) => ({
+        label: o.label,
+        value: o.value,
+        severity: o.severity ?? 0,
+        count: vals.filter((v) => v === o.value).length,
+      }))
+      const present = out.distribution.filter((o) => o.count > 0)
+      out.worst = present.length ? present.reduce((a, b) => (b.severity > a.severity ? b : a)).label : undefined
+      break
+    }
+  }
   return out
 }
 
