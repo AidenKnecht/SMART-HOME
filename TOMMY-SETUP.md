@@ -8,6 +8,9 @@ You don't need a Claude subscription. You'll use Claude Code with the $50 API cr
    - **Node.js LTS**: https://nodejs.org (Windows: run the installer; Mac: installer or `brew install node`)
    - **Git**: https://git-scm.com/downloads
    - **VS Code**: https://code.visualstudio.com
+   - **Important:** if VS Code was open while you installed Node, **fully quit VS Code** (every
+     window) and reopen it. Otherwise it can't find Node and the MCP servers show "Failed".
+     "Reload Window" is not enough.
 2. **Make a GitHub account** at github.com if you don't have one, and **text Aiden your username**
    so he can add you to the team repo. Accept the invite email.
 3. **Install Claude Code in VS Code**: Extensions panel (Ctrl+Shift+X / Cmd+Shift+X), search
@@ -30,7 +33,12 @@ You don't need a Claude subscription. You'll use Claude Code with the $50 API cr
 4. **Sign in to Claude Code**: open the Claude Code panel in VS Code, choose to sign in with
    your **Anthropic Console** account (not a Claude.ai subscription).
 5. When Claude Code asks whether to trust the project's **playwright** and **context7** MCP servers, say yes to both.
+   Type `/mcp` to check both say **Connected**.
 6. Quick test: ask Claude Code "Summarize CLAUDE.md in 3 bullets."
+7. Before you start editing: `git pull`. Work on your own branch (`git checkout -b tommy/<thing>`)
+   and ask Claude Code to commit and push; Aiden merges. That way we never edit the same file at once.
+
+You do **not** need Vercel or the GitHub CLI. Aiden handles deploys.
 
 ## Your role on the day (proposed)
 - 8:40–10:30: lead the clinician interviews (Homeroom, 4th floor). Write down exact quotes in the
