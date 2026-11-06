@@ -5,6 +5,7 @@ import { buildModel, type RangeKey } from '@/components/clinician/model'
 import { PatientHeader, type ViewKey } from '@/components/clinician/PatientHeader'
 import { SummaryStrip } from '@/components/clinician/SummaryStrip'
 import { tilesFor } from '@/components/clinician/tiles'
+import { TrendPanels } from '@/components/clinician/TrendPanels'
 import { demoPatient, patients } from '@/data'
 import { daysToCsv, type DayRule } from '@/lib/derive'
 
@@ -45,7 +46,7 @@ export default function App() {
           <>
             <SummaryStrip model={model} tiles={tiles} />
             <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-              <div className="bg-card text-muted-foreground rounded-lg border p-4 text-sm">Trend chart (next step)</div>
+              <TrendPanels model={model} />
               <ChangeFlags flags={model.flags} />
             </div>
           </>
