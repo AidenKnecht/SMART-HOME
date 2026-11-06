@@ -7,3 +7,4 @@ dist/
 .playwright-mcp/
 *.log
 .DS_Store
+.claude/settings.local.json
